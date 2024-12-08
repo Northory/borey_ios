@@ -9,11 +9,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*
- 
- 
- 
- */
 @interface ErrorHelper: NSObject
 
 +(NSError *) create: (NSInteger) code : (NSString *) desc;

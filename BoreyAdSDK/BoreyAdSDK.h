@@ -18,6 +18,7 @@ FOUNDATION_EXPORT const unsigned char BoreyAdSDKVersionString[];
 #import <BoreyAdSDK/BoreySplashAdFiller.h>
 #import <BoreyAdSDK/BoreyConfig.h>
 #import <BoreyAdSDK/ErrorHelper.h>
+#import <BoreyAdSDK/BoreyAd.h>
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -28,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, retain, readonly) BoreyConfig* config;
 
 +(instancetype) sharedInstance;
+
+-(NSString *) getBiddingId;
 
 -(void) initWithConfigAndCompletion: (BoreyConfig *) config : (void (^)(BOOL, NSError *)) completion;
 

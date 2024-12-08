@@ -1,4 +1,7 @@
 #import "BoreyAdSDK.h"
+#import "Helper/PreferenceHelper.h"
+#import "Common/Constants.h"
+#import "Helper/RandomHelper.h"
 
 @implementation BoreyAdSDK
 
@@ -33,6 +36,14 @@ static dispatch_once_t onceToken;
         return;
     }
     
+    NSString *biddingId = [PreferenceHelper.sharedInstance getStr: PerfKeyUserBiddingId];
+    NSLog(@"Borey-Init -> biddingId: %@", biddingId);
+    if (!biddingId || biddingId.length != 32) {
+        NSString *userBiddingId = [RandomHelper randomStr:32];
+        NSLog(@"Borey-Init -> userBiddingId: %@", userBiddingId);
+        [PreferenceHelper.sharedInstance saveStr:PerfKeyUserBiddingId : userBiddingId];
+    }
+    
     _config = config;
     _initialized = YES;
     
@@ -41,6 +52,10 @@ static dispatch_once_t onceToken;
         NSError * error = [ErrorHelper create: 0 : @"初始化成功"];
         completion(YES, error);
     }
+}
+
+-(NSString *) getBiddingId {
+    return [PreferenceHelper.sharedInstance getStr: PerfKeyUserBiddingId];;
 }
 
 - (instancetype) init {

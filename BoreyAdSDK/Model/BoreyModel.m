@@ -12,6 +12,14 @@
 
 @implementation BoreyModel
 
+- (instancetype)initWithDict:(NSDictionary *)dict {
+    self = [super self];
+    if (self) {
+        
+    }
+    return self;
+}
+
 -(Bid *) getBid {
     if (_seatBids && _seatBids.bids && _seatBids.bids.count > 0) {
         return _seatBids.bids[0];

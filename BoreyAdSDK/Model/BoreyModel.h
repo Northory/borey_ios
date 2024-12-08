@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, retain) SeatBid *seatBids;
 
+-(instancetype)initWithDict: (NSDictionary *) dict;
+
 -(NSString *) getImg;
 
 -(long) getPrice;
