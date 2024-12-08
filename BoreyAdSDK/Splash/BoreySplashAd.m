@@ -6,7 +6,6 @@
 //
 
 #import "BoreySplashAd.h"
-#import "BoreyAdSDK/BoreyAd.h"
 
 @interface BoreySplashAd()
 

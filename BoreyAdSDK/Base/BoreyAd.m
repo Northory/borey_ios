@@ -6,12 +6,17 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface BoreyAd : NSObject
-
-@end
+#import "BoreyAd.h"
 
 @implementation BoreyAd
 
++(NSString *) getAdImp: (AdType) adtype {
+    switch (adtype) {
+        case Splash:
+            return @"5";
+        case Express:
+            return @"2";
+    }
+}
 
 @end

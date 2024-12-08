@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BoreyAdSDK/BoreyAd.h"
+#import "BoreyAd.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

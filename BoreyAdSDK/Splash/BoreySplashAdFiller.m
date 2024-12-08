@@ -14,7 +14,7 @@
 
 @implementation BoreySplashAdFiller
 
--(void)fill:(NSString *)tagId bidFloor:(float)bidFloor {
+-(void)fill:(NSString *)tagId bidFloor:(long)bidFloor {
     
 }
 

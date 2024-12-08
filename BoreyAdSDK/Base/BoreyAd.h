@@ -7,9 +7,14 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, AdType) {
+    Splash = 0,
+    Express
+};
+
 
 @interface BoreyAd : NSObject
 
-
++(NSString *) getAdImp: (AdType) adtype;
 
 @end

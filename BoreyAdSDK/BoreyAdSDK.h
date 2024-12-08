@@ -14,4 +14,23 @@ FOUNDATION_EXPORT double BoreyAdSDKVersionNumber;
 FOUNDATION_EXPORT const unsigned char BoreyAdSDKVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <BoreyAdSDK/PublicHeader.h>
+#import <BoreyAdSDK/BoreySplashAd.h>
+#import <BoreyAdSDK/BoreySplashAdFiller.h>
+#import <BoreyAdSDK/BoreyConfig.h>
+#import <BoreyAdSDK/ErrorHelper.h>
 
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface BoreyAdSDK : NSObject
+
+@property(atomic, assign, readonly) BOOL initialized;
+@property(nonatomic, retain, readonly) BoreyConfig* config;
+
++(instancetype) sharedInstance;
+
+-(void) initWithConfigAndCompletion: (BoreyConfig *) config : (void (^)(BOOL, NSError *)) completion;
+
+@end
+
+NS_ASSUME_NONNULL_END
