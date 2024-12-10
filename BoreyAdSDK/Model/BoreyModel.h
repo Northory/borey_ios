@@ -14,8 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BoreyModel : NSObject
 
 @property(nonatomic, retain) SeatBid *seatBids;
+@property(nonatomic, assign) NSInteger code;
 
--(instancetype)initWithDict: (NSDictionary *) dict;
++(instancetype)initWithDict: (NSDictionary *) dict;
+
+-(BOOL) valid;
 
 -(NSString *) getImg;
 

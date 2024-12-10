@@ -8,25 +8,76 @@
 #import "Api.h"
 #import "BoreyAdSDK.h"
 #import "BoreyConfig.h"
+#import "PreferenceHelper.h"
+#import "Constants.h"
+#import "RandomHelper.h"
+#import <UIKit/UIKit.h>
 
 @implementation Api
 
 NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
 
--(void) fetchAdInfo: (AdType)adType : (NSInteger *)width : (NSInteger *)height : (NSString *)tagId : (long) bidFloor : (void (BoreyModel * boreyModel, NSError *error)) callback {
-    NSString *adImp = [BoreyAd getAdImp:adType];
+-(void) fetchAdInfo: (AdType)adType : (NSInteger)width : (NSInteger )height : (NSString *)tagId : (long) bidFloor : (void (BoreyModel * boreyModel, NSError *error)) callback {
+    
     NSString *mediaId = BoreyAdSDK.sharedInstance.config.mediaId;
     NSString *urlStr = [BASE_URL stringByAppendingString:mediaId];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    //获取user agent
+    NSURLRequest *requestObjForUserAgent = [NSURLRequest requestWithURL: url];
+    NSString *userAgent = [requestObjForUserAgent valueForHTTPHeaderField:@"User-Agent"];
+    NSDictionary *params = [self getParams:adType :tagId :width :height :bidFloor :userAgent];
+    [self doRequest:@"POST" :urlStr :params :^(NSDictionary * response, NSError * error) {
+        if (response) {
+            BoreyModel *boreyModel = [BoreyModel initWithDict: response];
+        } else {
+            
+        }
+    }];
+    
 }
 
--(NSDictionary* ) getParams: (NSString *) adType : (NSString *) tagId : (NSInteger) width : (NSInteger) height : (long) bidFloor  {
+-(NSDictionary* ) getParams: (AdType) adType : (NSString *) tagId : (NSInteger) width : (NSInteger) height : (long) bidFloor : (NSString *) userAgent  {
+    
     BoreyConfig *config = BoreyAdSDK.sharedInstance.config;
+    NSString *biddingId = [Constants getBiddingId];
+    NSString *requestId = [RandomHelper randomStr:32];
+    NSString *adImp = [BoreyAd getAdImp:adType];
     NSInteger isTest = config.debug ? 1 : 0;
-    NSDictionary * device = @{};
+    
+    //广告信息
     NSDictionary * imp = @{
-        
+        @"id": requestId,
+        @"tagid": tagId,
+        @"deeplink": @1,
+        @"impType": adImp,
+        @"secure": @1,
+        @"width": @(width),
+        @"height": @(height),
+        @"bidfloor": @(bidFloor),
     };
-    NSDictionary * app = @{};
+    
+    //设备信息
+    UIScreen *mainScreen = [UIScreen mainScreen];
+    CGRect screenBounds = mainScreen.bounds;
+    CGFloat screenWidth = screenBounds.size.width;
+    CGFloat screenHeight = screenBounds.size.height;
+    NSDictionary * device = @{
+        @"ua": userAgent,
+        @"w": @(screenWidth),
+        @"h": @(screenHeight)
+    };
+    
+    //app信息
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *appName = [bundle objectForInfoDictionaryKey:@"CFBundleName"];
+    NSString *bundleIdentifier = [bundle bundleIdentifier];
+    NSString *appVersion = [bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSDictionary * app = @{
+        @"name" : appName,
+        @"bundle" : bundleIdentifier,
+        @"ver" : appVersion
+    };
+    
     NSDictionary * params = @{
         @"device": device,
         @"imp": imp,

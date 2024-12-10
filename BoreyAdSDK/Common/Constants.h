@@ -12,4 +12,6 @@ extern NSString *const PerfKeyUserBiddingId;
 
 @interface Constants : NSObject
 
++(NSString*) getBiddingId;
+
 @end

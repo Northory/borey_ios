@@ -9,4 +9,11 @@
 
 @implementation Bid
 
++ (instancetype)initWithDict:(NSDictionary *)dict {
+    self = [super self];
+    if (self) {
+    }
+    return self;
+}
+
 @end

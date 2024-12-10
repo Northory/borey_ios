@@ -12,12 +12,25 @@
 
 @implementation BoreyModel
 
-- (instancetype)initWithDict:(NSDictionary *)dict {
++ (instancetype)initWithDict:(NSDictionary *)dict {
     self = [super self];
     if (self) {
-        
+        //解析数据
+        _seatBids = [SeatBid new];
+        if (dict) {
+            _seatBids.bids = [NSMutableArray new];
+            NSDictionary * seatBidDict = dict[@"bidid"];
+            _code = [dict[@"code"] integerValue];
+            if (_code == 0 && seatBidDict) {
+                
+            } 
+        }
     }
     return self;
+}
+
+- (BOOL) valid {
+    return _code == 0;
 }
 
 -(Bid *) getBid {

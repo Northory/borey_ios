@@ -7,10 +7,20 @@
 
 #import <Foundation/Foundation.h>
 #import "Constants.h"
+#import "PreferenceHelper.h"
+#import "RandomHelper.h"
 
 NSString *const PerfKeyUserBiddingId = @"perf_key_user_bidding_id";
 
 @implementation Constants
 
++ (NSString *) getBiddingId {
+    NSString *biddingId = [PreferenceHelper.sharedInstance getStr:PerfKeyUserBiddingId];
+    if (!biddingId || biddingId.length != 32) {
+        biddingId = [RandomHelper randomStr:32];
+        [PreferenceHelper.sharedInstance saveStr:PerfKeyUserBiddingId :biddingId];
+    }
+    return biddingId;
+}
 
 @end
