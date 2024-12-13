@@ -43,6 +43,11 @@
 		1B1592C62D059C5500F0D065 /* PreferenceHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B1592C52D059C5500F0D065 /* PreferenceHelper.h */; };
 		1B1592C82D05A0B900F0D065 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B1592C72D05A0B900F0D065 /* Constants.h */; };
 		1B1592CA2D05A14000F0D065 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1592C92D05A14000F0D065 /* Constants.m */; };
+		1B9611582D0C70D800C8CE3F /* DeviceHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B9611572D0C70D800C8CE3F /* DeviceHelper.h */; };
+		1B96115A2D0C710900C8CE3F /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9611592D0C710900C8CE3F /* Network.framework */; };
+		1B96115C2D0C713700C8CE3F /* DeviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B96115B2D0C713700C8CE3F /* DeviceHelper.m */; };
+		1B96115E2D0C738C00C8CE3F /* Md5Helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B96115D2D0C738C00C8CE3F /* Md5Helper.h */; };
+		1B9611602D0C73AC00C8CE3F /* Md5Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B96115F2D0C73AC00C8CE3F /* Md5Helper.m */; };
 		1BCEF4C82CFC3770008B4A53 /* BoreyAdSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCEF4C72CFC3770008B4A53 /* BoreyAdSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BCEF51D2CFC58CE008B4A53 /* BoreyAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCEF51C2CFC58CE008B4A53 /* BoreyAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BCEF5292CFCB378008B4A53 /* BoreyAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCEF5282CFCB378008B4A53 /* BoreyAd.m */; };
@@ -84,6 +89,11 @@
 		1B1592C52D059C5500F0D065 /* PreferenceHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferenceHelper.h; sourceTree = "<group>"; };
 		1B1592C72D05A0B900F0D065 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		1B1592C92D05A14000F0D065 /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		1B9611572D0C70D800C8CE3F /* DeviceHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceHelper.h; sourceTree = "<group>"; };
+		1B9611592D0C710900C8CE3F /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
+		1B96115B2D0C713700C8CE3F /* DeviceHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceHelper.m; sourceTree = "<group>"; };
+		1B96115D2D0C738C00C8CE3F /* Md5Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Md5Helper.h; sourceTree = "<group>"; };
+		1B96115F2D0C73AC00C8CE3F /* Md5Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Md5Helper.m; sourceTree = "<group>"; };
 		1BCEF4C42CFC3770008B4A53 /* BoreyAdSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BoreyAdSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BCEF4C72CFC3770008B4A53 /* BoreyAdSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoreyAdSDK.h; sourceTree = "<group>"; };
 		1BCEF51C2CFC58CE008B4A53 /* BoreyAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoreyAd.h; sourceTree = "<group>"; };
@@ -101,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B96115A2D0C710900C8CE3F /* Network.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +207,7 @@
 		1BCEF51E2CFC59B0008B4A53 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1B9611592D0C710900C8CE3F /* Network.framework */,
 				1BCEF5232CFCB184008B4A53 /* Foundation.framework */,
 				1BCEF51F2CFC59B0008B4A53 /* UIKit.framework */,
 			);
@@ -209,6 +221,10 @@
 				1B1592BB2D04671F00F0D065 /* ErrorHelper.m */,
 				1B1592C72D05A0B900F0D065 /* Constants.h */,
 				1B1592C92D05A14000F0D065 /* Constants.m */,
+				1B9611572D0C70D800C8CE3F /* DeviceHelper.h */,
+				1B96115B2D0C713700C8CE3F /* DeviceHelper.m */,
+				1B96115D2D0C738C00C8CE3F /* Md5Helper.h */,
+				1B96115F2D0C73AC00C8CE3F /* Md5Helper.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -235,8 +251,10 @@
 				1BCEF4C82CFC3770008B4A53 /* BoreyAdSDK.h in Headers */,
 				1B1592A92D040B0C00F0D065 /* SeatBid.h in Headers */,
 				1B1592B82D0454E000F0D065 /* BoreyConfig.h in Headers */,
+				1B9611582D0C70D800C8CE3F /* DeviceHelper.h in Headers */,
 				1BCEF51D2CFC58CE008B4A53 /* BoreyAd.h in Headers */,
 				1B1592C12D05839700F0D065 /* RandomHelper.h in Headers */,
+				1B96115E2D0C738C00C8CE3F /* Md5Helper.h in Headers */,
 				1B1592A52D04063500F0D065 /* BoreyModel.h in Headers */,
 				1BCEF5392CFCBFF2008B4A53 /* BoreySplashAd.h in Headers */,
 				1B1592C82D05A0B900F0D065 /* Constants.h in Headers */,
@@ -352,8 +370,10 @@
 				1B1592B92D0454E000F0D065 /* BoreyConfig.m in Sources */,
 				1B1592AE2D040C5E00F0D065 /* Bid.m in Sources */,
 				1BCEF53A2CFCBFF2008B4A53 /* BoreySplashAd.m in Sources */,
+				1B9611602D0C73AC00C8CE3F /* Md5Helper.m in Sources */,
 				1B1592C42D059C3C00F0D065 /* PreferenceHelper.m in Sources */,
 				1B1592BD2D04671F00F0D065 /* ErrorHelper.m in Sources */,
+				1B96115C2D0C713700C8CE3F /* DeviceHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

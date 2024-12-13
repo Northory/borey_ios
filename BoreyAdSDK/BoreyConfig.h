@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, copy) NSString* mediaId;
 @property(nonatomic, assign) BOOL debug;
+@property(nonatomic, copy) NSString* idfa;
+
+-(NSString *) getIdfa;
 
 @end
 

@@ -12,12 +12,14 @@
 #import "Constants.h"
 #import "RandomHelper.h"
 #import <UIKit/UIKit.h>
+#import "DeviceHelper.h"
+#import "Md5Helper.h"
 
 @implementation Api
 
 NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
 
--(void) fetchAdInfo: (AdType)adType : (NSInteger)width : (NSInteger )height : (NSString *)tagId : (long) bidFloor : (void (BoreyModel * boreyModel, NSError *error)) callback {
++(void) fetchAdInfo: (AdType)adType : (NSInteger)width : (NSInteger )height : (NSString *)tagId : (long) bidFloor : (void (BoreyModel * boreyModel, NSError *error)) callback {
     
     NSString *mediaId = BoreyAdSDK.sharedInstance.config.mediaId;
     NSString *urlStr = [BASE_URL stringByAppendingString:mediaId];
@@ -36,7 +38,7 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
     
 }
 
--(NSDictionary* ) getParams: (AdType) adType : (NSString *) tagId : (NSInteger) width : (NSInteger) height : (long) bidFloor : (NSString *) userAgent  {
++ (NSDictionary* ) getParams: (AdType) adType : (NSString *) tagId : (NSInteger) width : (NSInteger) height : (long) bidFloor : (NSString *) userAgent  {
     
     BoreyConfig *config = BoreyAdSDK.sharedInstance.config;
     NSString *biddingId = [Constants getBiddingId];
@@ -61,10 +63,37 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
     CGRect screenBounds = mainScreen.bounds;
     CGFloat screenWidth = screenBounds.size.width;
     CGFloat screenHeight = screenBounds.size.height;
+    //运营商信息
+    NSString *carrier = [DeviceHelper getCurrentCarrierName];
+    CGFloat screenScale = [UIScreen mainScreen].scale;
+    NSString *model = [DeviceHelper getDeviceModel];
+    CGFloat ppi = [DeviceHelper getPixelsPerInch];
+    NSString *osv = [[UIDevice currentDevice] systemVersion];
+    NSString *did = [DeviceHelper getDeviceIdentifier];
+    NSString *didMd5 = [Md5Helper md5: did];
+    NSString *lang = [DeviceHelper getCurrentLanguage];
+    NSString *idfa = [DeviceHelper getIdfa];
+    NSString *idfaMd5 = [Md5Helper md5: idfa];
+    NSString *paid = [DeviceHelper getPAID];
     NSDictionary * device = @{
         @"ua": userAgent,
         @"w": @(screenWidth),
-        @"h": @(screenHeight)
+        @"h": @(screenHeight),
+        @"devicetype":@(4),
+        @"carrier": carrier,
+        @"pxratio": @(screenScale),
+        @"model": model,
+        @"os":@"ios",
+        @"osv":osv,
+        @"ppi":@(ppi),
+        @"js": @(1),
+        @"did": did,
+        @"didmd5": didMd5,
+        @"region": @"CN",
+        @"lang": lang,
+        @"idfa": idfa,
+        @"idfa_md5": idfaMd5,
+        @"paid": paid
     };
     
     //app信息
@@ -89,8 +118,10 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
     return params;
 }
 
+
+
 //⚠️注意子线程发起请求
-- (void)doRequest:(NSString *)method :(NSString *)urlStr :(NSDictionary *)params :(void (^)(NSDictionary * responseDict, NSError * error))callback {
++ (void)doRequest:(NSString *)method :(NSString *)urlStr :(NSDictionary *)params :(void (^)(NSDictionary * responseDict, NSError * error))callback {
     NSURL *url = [NSURL URLWithString:urlStr];
     NSData *requestBody = [NSJSONSerialization dataWithJSONObject:params options:0 error:nil];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];

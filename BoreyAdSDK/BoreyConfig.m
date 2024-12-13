@@ -9,4 +9,12 @@
 
 @implementation BoreyConfig 
 
+- (NSString *) getIdfa {
+    if(_idfa) {
+        return _idfa;
+    } else {
+        return @"";
+    }
+}
+
 @end

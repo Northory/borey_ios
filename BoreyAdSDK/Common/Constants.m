@@ -11,6 +11,7 @@
 #import "RandomHelper.h"
 
 NSString *const PerfKeyUserBiddingId = @"perf_key_user_bidding_id";
+NSString *const PerfKeyUserIDFA = @"perf_key_user_idfa";
 
 @implementation Constants
 

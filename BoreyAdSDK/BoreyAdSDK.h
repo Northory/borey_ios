@@ -30,8 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(instancetype) sharedInstance;
 
--(NSString *) getBiddingId;
-
 -(void) initWithConfigAndCompletion: (BoreyConfig *) config : (void (^)(BOOL, NSError *)) completion;
 
 @end
