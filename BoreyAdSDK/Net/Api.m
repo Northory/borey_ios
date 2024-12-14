@@ -19,13 +19,12 @@
 
 @implementation Api
 
-NSString *const BASE_URL = @"http://bid-adx.lanjingads.com/main?media=";
+NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
 
 +(void) fetchAdInfo: (AdType)adType : (NSInteger)width : (NSInteger )height : (NSString *)tagId : (long) bidFloor : (void (^)(BoreyModel * responseDict, NSError * error))callback {
     
     NSString *mediaId = BoreyAdSDK.sharedInstance.config.mediaId;
     NSString *urlStr = [BASE_URL stringByAppendingString:mediaId];
-    NSURL *url = [NSURL URLWithString:urlStr];
     NSDictionary *params = [self getParams:adType :tagId :width :height :bidFloor];
     
     [Logs i: @"Request Url: %@", urlStr];

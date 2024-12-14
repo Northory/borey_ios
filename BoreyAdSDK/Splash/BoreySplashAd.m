@@ -7,10 +7,10 @@
 
 #import "BoreySplashAd.h"
 
-@interface BoreySplashAd()
-
-@end
-
 @implementation BoreySplashAd
+
+- (void)showInWindow:(UIWindow *)window {
+    
+}
 
 @end
