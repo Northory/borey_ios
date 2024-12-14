@@ -14,37 +14,48 @@
 #import <UIKit/UIKit.h>
 #import "DeviceHelper.h"
 #import "Md5Helper.h"
+#import "Logs.h"
+#import <WebKit/WebKit.h>
 
 @implementation Api
 
-NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
+NSString *const BASE_URL = @"http://bid-adx.lanjingads.com/main?media=";
 
-+(void) fetchAdInfo: (AdType)adType : (NSInteger)width : (NSInteger )height : (NSString *)tagId : (long) bidFloor : (void (BoreyModel * boreyModel, NSError *error)) callback {
++(void) fetchAdInfo: (AdType)adType : (NSInteger)width : (NSInteger )height : (NSString *)tagId : (long) bidFloor : (void (^)(BoreyModel * responseDict, NSError * error))callback {
     
     NSString *mediaId = BoreyAdSDK.sharedInstance.config.mediaId;
     NSString *urlStr = [BASE_URL stringByAppendingString:mediaId];
     NSURL *url = [NSURL URLWithString:urlStr];
-    //获取user agent
-    NSURLRequest *requestObjForUserAgent = [NSURLRequest requestWithURL: url];
-    NSString *userAgent = [requestObjForUserAgent valueForHTTPHeaderField:@"User-Agent"];
-    NSDictionary *params = [self getParams:adType :tagId :width :height :bidFloor :userAgent];
+    NSDictionary *params = [self getParams:adType :tagId :width :height :bidFloor];
+    
+    [Logs i: @"Request Url: %@", urlStr];
+    [Logs dict:@"Request Params" : params];
+    
     [self doRequest:@"POST" :urlStr :params :^(NSDictionary * response, NSError * error) {
         if (response) {
-            BoreyModel *boreyModel = [BoreyModel initWithDict: response];
+            BoreyModel *boreyModel = [[BoreyModel alloc] initWithDict:response];
+            callback(boreyModel, nil);
         } else {
-            
+            callback(nil, error);
         }
     }];
     
 }
 
-+ (NSDictionary* ) getParams: (AdType) adType : (NSString *) tagId : (NSInteger) width : (NSInteger) height : (long) bidFloor : (NSString *) userAgent  {
++ (NSDictionary* ) getParams: (AdType) adType : (NSString *) tagId : (NSInteger) width : (NSInteger) height : (long) bidFloor   {
     
     BoreyConfig *config = BoreyAdSDK.sharedInstance.config;
     NSString *biddingId = [Constants getBiddingId];
     NSString *requestId = [RandomHelper randomStr:32];
     NSString *adImp = [BoreyAd getAdImp:adType];
     NSInteger isTest = config.debug ? 1 : 0;
+    // 创建一个UIWebView来获取User-Agent
+    WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectZero];
+    // 获取User-Agent
+    NSString *userAgent = webView.customUserAgent;
+    if (!userAgent) {
+        userAgent = @"";
+    }
     
     //广告信息
     NSDictionary * imp = @{
@@ -75,6 +86,7 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
     NSString *idfa = [DeviceHelper getIdfa];
     NSString *idfaMd5 = [Md5Helper md5: idfa];
     NSString *paid = [DeviceHelper getPAID];
+    
     NSDictionary * device = @{
         @"ua": userAgent,
         @"w": @(screenWidth),
@@ -109,10 +121,11 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
     
     NSDictionary * params = @{
         @"device": device,
-        @"imp": imp,
+        @"imp": @[imp],
         @"app": app,
         @"test": @(isTest),
         @"tmax": @1000,
+        @"id": biddingId
     };
     
     return params;
@@ -123,34 +136,50 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
 //⚠️注意子线程发起请求
 + (void)doRequest:(NSString *)method :(NSString *)urlStr :(NSDictionary *)params :(void (^)(NSDictionary * responseDict, NSError * error))callback {
     NSURL *url = [NSURL URLWithString:urlStr];
-    NSData *requestBody = [NSJSONSerialization dataWithJSONObject:params options:0 error:nil];
+    NSError *paramsParseError;
+    NSData *requestBody = [NSJSONSerialization dataWithJSONObject:params options:0 error: &paramsParseError];
+    if (paramsParseError) {
+        [Logs e: @"Parse params error: %@", paramsParseError.userInfo];
+        callback(nil, paramsParseError);
+        return;
+    }
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    request.HTTPMethod = method;
+    [request setHTTPMethod: method];
+    [request setHTTPBody: requestBody];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    request.HTTPBody = requestBody;
-    // 创建会话配置
+    [Logs i: @"Req: %@", request];
+    [Logs i: @"Req Body: %@", requestBody];
+     //创建会话配置
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    // 创建会话
+     //创建会话
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     // 发起请求
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
-            NSLog(@"请求失败: %@", error);
+            [Logs i:@"请求失败： %@", error.userInfo];
             callback(nil, error);
             return;
         }
-
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        [Logs i:@"响应成功： %@", string];
         // 解析响应数据
-        if (data) {
-            NSError *parseError = nil;
-            NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-            if (parseError) {
-                NSLog(@"解析响应数据失败: %@", parseError);
-                callback(nil, parseError);
+        if([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            if (httpResponse.statusCode == 200) {
+                if (data) {
+                    NSError *parseError = nil;
+                    NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+                    if (parseError) {
+                        [Logs i:@"解析响应数据失败: %@", parseError.userInfo];
+                        callback(nil, parseError);
+                    } else {
+                        callback(responseDict, nil);
+                        [Logs i:@"解析响应数据成功: %@", responseDict];
+                    }
+                }
             } else {
-                callback(responseDict, nil);
-                NSLog(@"响应数据: %@", responseDict);
+                [Logs i:@"请求失败，code: %d, msg: ", httpResponse.statusCode, httpResponse.description];
             }
         }
     }];

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 extern NSString *const PerfKeyUserBiddingId;
-NSString *const PerfKeyUserIDFA;
+extern NSString *const PerfKeyUserIDFA;
 
 @interface Constants : NSObject
 

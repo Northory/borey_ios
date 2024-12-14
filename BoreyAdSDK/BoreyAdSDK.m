@@ -45,7 +45,7 @@ static dispatch_once_t onceToken;
         [PreferenceHelper.sharedInstance saveStr:PerfKeyUserBiddingId : userBiddingId];
     }
     
-    [DeviceHelper getIDFA]
+    [DeviceHelper requestIDFA];
     
     _config = config;
     _initialized = YES;

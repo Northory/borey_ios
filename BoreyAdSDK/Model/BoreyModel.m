@@ -12,8 +12,8 @@
 
 @implementation BoreyModel
 
-+ (instancetype)initWithDict:(NSDictionary *)dict {
-    self = [super self];
+- (instancetype)initWithDict:(NSDictionary *)dict {
+    self = [super init];
     if (self) {
         //解析数据
         _seatBids = [SeatBid new];

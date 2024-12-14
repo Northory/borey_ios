@@ -9,8 +9,8 @@
 
 @implementation Bid
 
-+ (instancetype)initWithDict:(NSDictionary *)dict {
-    self = [super self];
+- (instancetype)initWithDict:(NSDictionary *)dictionary {
+    self = [super init];
     if (self) {
     }
     return self;

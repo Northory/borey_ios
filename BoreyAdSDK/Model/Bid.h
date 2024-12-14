@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString *desc;
 @property(nonatomic, assign) long price;
 
-+ (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)initWithDict:(NSDictionary *)dictionary;
 
 
 @end

@@ -48,6 +48,8 @@
 		1B96115C2D0C713700C8CE3F /* DeviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B96115B2D0C713700C8CE3F /* DeviceHelper.m */; };
 		1B96115E2D0C738C00C8CE3F /* Md5Helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B96115D2D0C738C00C8CE3F /* Md5Helper.h */; };
 		1B9611602D0C73AC00C8CE3F /* Md5Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B96115F2D0C73AC00C8CE3F /* Md5Helper.m */; };
+		1B9611622D0D478700C8CE3F /* Logs.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9611612D0D478700C8CE3F /* Logs.m */; };
+		1B9611642D0D479700C8CE3F /* Logs.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B9611632D0D479700C8CE3F /* Logs.h */; };
 		1BCEF4C82CFC3770008B4A53 /* BoreyAdSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCEF4C72CFC3770008B4A53 /* BoreyAdSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BCEF51D2CFC58CE008B4A53 /* BoreyAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCEF51C2CFC58CE008B4A53 /* BoreyAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BCEF5292CFCB378008B4A53 /* BoreyAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCEF5282CFCB378008B4A53 /* BoreyAd.m */; };
@@ -94,6 +96,8 @@
 		1B96115B2D0C713700C8CE3F /* DeviceHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceHelper.m; sourceTree = "<group>"; };
 		1B96115D2D0C738C00C8CE3F /* Md5Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Md5Helper.h; sourceTree = "<group>"; };
 		1B96115F2D0C73AC00C8CE3F /* Md5Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Md5Helper.m; sourceTree = "<group>"; };
+		1B9611612D0D478700C8CE3F /* Logs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Logs.m; sourceTree = "<group>"; };
+		1B9611632D0D479700C8CE3F /* Logs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logs.h; sourceTree = "<group>"; };
 		1BCEF4C42CFC3770008B4A53 /* BoreyAdSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BoreyAdSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BCEF4C72CFC3770008B4A53 /* BoreyAdSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoreyAdSDK.h; sourceTree = "<group>"; };
 		1BCEF51C2CFC58CE008B4A53 /* BoreyAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoreyAd.h; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 				1B1592C02D05839700F0D065 /* RandomHelper.m */,
 				1B1592C52D059C5500F0D065 /* PreferenceHelper.h */,
 				1B1592C32D059C3C00F0D065 /* PreferenceHelper.m */,
+				1B9611632D0D479700C8CE3F /* Logs.h */,
+				1B9611612D0D478700C8CE3F /* Logs.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -248,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B1592BC2D04671F00F0D065 /* ErrorHelper.h in Headers */,
+				1B9611642D0D479700C8CE3F /* Logs.h in Headers */,
 				1BCEF4C82CFC3770008B4A53 /* BoreyAdSDK.h in Headers */,
 				1B1592A92D040B0C00F0D065 /* SeatBid.h in Headers */,
 				1B1592B82D0454E000F0D065 /* BoreyConfig.h in Headers */,
@@ -370,6 +377,7 @@
 				1B1592B92D0454E000F0D065 /* BoreyConfig.m in Sources */,
 				1B1592AE2D040C5E00F0D065 /* Bid.m in Sources */,
 				1BCEF53A2CFCBFF2008B4A53 /* BoreySplashAd.m in Sources */,
+				1B9611622D0D478700C8CE3F /* Logs.m in Sources */,
 				1B9611602D0C73AC00C8CE3F /* Md5Helper.m in Sources */,
 				1B1592C42D059C3C00F0D065 /* PreferenceHelper.m in Sources */,
 				1B1592BD2D04671F00F0D065 /* ErrorHelper.m in Sources */,
