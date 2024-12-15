@@ -41,7 +41,7 @@
                     [strongSelf.listener onSplashAdFilled:splashAd :error];
                 } else {
                     NSString *errorMsg = @"Splash广告加载失败：数据解析失败";
-                    [ErrorHelper create:2001 : errorMsg];
+                    [strongSelf.listener onSplashAdFilled: nil :[ErrorHelper create:2001 : errorMsg]];
                     [Logs i: errorMsg];
                 }
             }

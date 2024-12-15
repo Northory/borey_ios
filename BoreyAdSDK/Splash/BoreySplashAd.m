@@ -37,7 +37,7 @@
     _webview = [[CustomWebView alloc] create:window.bounds :nil];
     _webview.webViewDelegate = self;
     // 获取HTML文件的路径
-    NSBundle *bundle = [NSBundle mainBundle];
+    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"BoreySplash" ofType:@"bundle"]];
     NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html"];
 
     // 检查文件是否存在

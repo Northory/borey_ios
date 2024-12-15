@@ -68,7 +68,7 @@
         return;
     }
     NSString *method = [dictionary objectForKey: @"method"];
-    NSDictionary *params = [dictionary objectForKey: @"params"];
+//    NSDictionary *params = [dictionary objectForKey: @"params"];
     if ([method isEqualToString: @"click_close_btn"]) {
         [_webViewDelegate onClickCloseBtn];
     } else if ([method isEqualToString: @"click_ad"]) {

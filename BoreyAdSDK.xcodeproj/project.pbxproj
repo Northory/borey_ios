@@ -11,7 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 1BCEF52B2CFCB798008B4A53 /* Build configuration list for PBXAggregateTarget "BoreyAdSDK-Script" */;
 			buildPhases = (
-				1BCEF5302CFCB7B8008B4A53 /* ShellScript */,
+				1BCEF5302CFCB7B8008B4A53 /* Run Script */,
 			);
 			dependencies = (
 				1BCEF52F2CFCB7A4008B4A53 /* PBXTargetDependency */,
@@ -46,6 +46,7 @@
 		1B47B9562D0DC81A0062B4EB /* CustomWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B47B9552D0DC81A0062B4EB /* CustomWebView.m */; };
 		1B47B9582D0DC8280062B4EB /* CustomWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B47B9572D0DC8280062B4EB /* CustomWebView.h */; };
 		1B47B95A2D0DCC490062B4EB /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B47B9592D0DCC490062B4EB /* WebKit.framework */; };
+		1B47B95E2D0EC1000062B4EB /* BoreySplash.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B47B95D2D0EC1000062B4EB /* BoreySplash.bundle */; };
 		1B9611582D0C70D800C8CE3F /* DeviceHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B9611572D0C70D800C8CE3F /* DeviceHelper.h */; };
 		1B96115A2D0C710900C8CE3F /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9611592D0C710900C8CE3F /* Network.framework */; };
 		1B96115C2D0C713700C8CE3F /* DeviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B96115B2D0C713700C8CE3F /* DeviceHelper.m */; };
@@ -53,9 +54,6 @@
 		1B9611602D0C73AC00C8CE3F /* Md5Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B96115F2D0C73AC00C8CE3F /* Md5Helper.m */; };
 		1B9611622D0D478700C8CE3F /* Logs.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9611612D0D478700C8CE3F /* Logs.m */; };
 		1B9611642D0D479700C8CE3F /* Logs.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B9611632D0D479700C8CE3F /* Logs.h */; };
-		1B9612382D0DB5E600C8CE3F /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 1B9612352D0DB5E600C8CE3F /* index.html */; };
-		1B9612392D0DB5E600C8CE3F /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 1B9612362D0DB5E600C8CE3F /* script.js */; };
-		1B96123A2D0DB5E600C8CE3F /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 1B9612372D0DB5E600C8CE3F /* style.css */; };
 		1BCEF4C82CFC3770008B4A53 /* BoreyAdSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCEF4C72CFC3770008B4A53 /* BoreyAdSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BCEF51D2CFC58CE008B4A53 /* BoreyAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCEF51C2CFC58CE008B4A53 /* BoreyAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BCEF5292CFCB378008B4A53 /* BoreyAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCEF5282CFCB378008B4A53 /* BoreyAd.m */; };
@@ -100,6 +98,7 @@
 		1B47B9552D0DC81A0062B4EB /* CustomWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomWebView.m; sourceTree = "<group>"; };
 		1B47B9572D0DC8280062B4EB /* CustomWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomWebView.h; sourceTree = "<group>"; };
 		1B47B9592D0DCC490062B4EB /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		1B47B95D2D0EC1000062B4EB /* BoreySplash.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BoreySplash.bundle; sourceTree = "<group>"; };
 		1B9611572D0C70D800C8CE3F /* DeviceHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceHelper.h; sourceTree = "<group>"; };
 		1B9611592D0C710900C8CE3F /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
 		1B96115B2D0C713700C8CE3F /* DeviceHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceHelper.m; sourceTree = "<group>"; };
@@ -107,9 +106,6 @@
 		1B96115F2D0C73AC00C8CE3F /* Md5Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Md5Helper.m; sourceTree = "<group>"; };
 		1B9611612D0D478700C8CE3F /* Logs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Logs.m; sourceTree = "<group>"; };
 		1B9611632D0D479700C8CE3F /* Logs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logs.h; sourceTree = "<group>"; };
-		1B9612352D0DB5E600C8CE3F /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		1B9612362D0DB5E600C8CE3F /* script.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
-		1B9612372D0DB5E600C8CE3F /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		1BCEF4C42CFC3770008B4A53 /* BoreyAdSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BoreyAdSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BCEF4C72CFC3770008B4A53 /* BoreyAdSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoreyAdSDK.h; sourceTree = "<group>"; };
 		1BCEF51C2CFC58CE008B4A53 /* BoreyAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoreyAd.h; sourceTree = "<group>"; };
@@ -162,9 +158,7 @@
 		1B9612342D0DB59A00C8CE3F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1B9612352D0DB5E600C8CE3F /* index.html */,
-				1B9612362D0DB5E600C8CE3F /* script.js */,
-				1B9612372D0DB5E600C8CE3F /* style.css */,
+				1B47B95D2D0EC1000062B4EB /* BoreySplash.bundle */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -363,31 +357,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B9612382D0DB5E600C8CE3F /* index.html in Resources */,
-				1B96123A2D0DB5E600C8CE3F /* style.css in Resources */,
-				1B9612392D0DB5E600C8CE3F /* script.js in Resources */,
+				1B47B95E2D0EC1000062B4EB /* BoreySplash.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1BCEF5302CFCB7B8008B4A53 /* ShellScript */ = {
+		1BCEF5302CFCB7B8008B4A53 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#要build的target名\n#!/bin/sh\n#要build的target名\nTARGET_NAME=${PROJECT_NAME}\nif [[ $1 ]]\nthen\nTARGET_NAME=$1\nfi\nUNIVERSAL_OUTPUT_FOLDER=\"${SRCROOT}/${PROJECT_NAME}/\"\n\n#创建输出目录，并删除之前的framework文件\nmkdir -p \"${UNIVERSAL_OUTPUT_FOLDER}\"\nrm -rf \"${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework\"\n\n#分别编译模拟器和真机的Framework\nxcodebuild -target \"${TARGET_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nxcodebuild -target \"${TARGET_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphonesimulator BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n#拷贝framework到univer目录\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${TARGET_NAME}.framework\" \"${UNIVERSAL_OUTPUT_FOLDER}\"\n\nlipo \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${TARGET_NAME}.framework/${TARGET_NAME}\" -remove arm64 -output \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${TARGET_NAME}.framework/${TARGET_NAME}\"\n\n\n#合并framework，输出最终的framework到build目录\nlipo -create -output \"${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework/${TARGET_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${TARGET_NAME}.framework/${TARGET_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${TARGET_NAME}.framework/${TARGET_NAME}\"\n\n#删除编译之后生成的无关的配置文件\ndir_path=\"${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework/\"\nfor file in ls $dir_path\ndo\nif [[ ${file} =~ \".xcconfig\" ]]\nthen\nrm -f \"${dir_path}/${file}\"\nfi\ndone\n#判断build文件夹是否存在，存在则删除\nif [ -d \"${SRCROOT}/build\" ]\nthen\nrm -rf \"${SRCROOT}/build\"\nfi\nrm -rf \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos\"\n#打开合并后的文件夹\nopen \"${UNIVERSAL_OUTPUT_FOLDER}\"\n";
+			shellScript = "#!/bin/bash\n\n# 定义Framework的名称\nFRAMEWORK_NAME=\"BoreyAdSDK\"\n\n# 定义输出目录\nOUTPUT_DIR=\"$(pwd)/output\"\n\n# 清理输出目录\nrm -rf \"$OUTPUT_DIR\"\nmkdir -p \"$OUTPUT_DIR\"\n\n# 构建Framework\nxcodebuild -scheme \"$FRAMEWORK_NAME\" -configuration Release -sdk iphoneos BUILD_DIR=\"$OUTPUT_DIR/iphoneos\"\n\n# 复制合并后的Framework到输出目录\ncp -r \"$OUTPUT_DIR/iphoneos/Release-iphoneos/$FRAMEWORK_NAME.framework\" \"$OUTPUT_DIR/\"\n\n# 打印完成信息\necho \"Build Completed!\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -485,7 +478,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -629,6 +622,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8F4K56836R;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -638,6 +632,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8F4K56836R;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
