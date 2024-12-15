@@ -9,7 +9,9 @@
 #import "Api.h"
 #import "BoreyAdSDK/BoreyAd.h"
 #import <UIKit/UIKit.h>
-
+#import "Logs.h"
+#import "ErrorHelper.h"
+#import "BoreySplashAd.h"
 
 @interface BoreySplashAdFiller()
 
@@ -19,12 +21,31 @@
 @implementation BoreySplashAdFiller
 
 -(void)fill:(NSString *)tagId bidFloor:(long)bidFloor {
-    //设备信息
     UIScreen *mainScreen = [UIScreen mainScreen];
     CGRect screenBounds = mainScreen.bounds;
     NSInteger screenWidth = (NSInteger)screenBounds.size.width;
     NSInteger screenHeight = (NSInteger)screenBounds.size.height;
-    [Api fetchAdInfo:Splash :screenWidth :screenHeight :@"25" :10 :^(BoreyModel * boreyModel, NSError * error) {
+    __weak typeof(self) weakSelf = self;
+    [Api fetchAdInfo:Splash :screenWidth :screenHeight :tagId :bidFloor :^(BoreyModel * boreyModel, NSError * error) {
+        
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [Logs i:@"callback success... %@", strongSelf.listener];
+            if (strongSelf.listener) {
+                if (error) {
+                    [Logs i: @"Splash广告加载失败：%@", error.userInfo];
+                } else if(boreyModel && [boreyModel valid]) {
+                    
+                    BoreySplashAd * splashAd = [BoreySplashAd new];
+                    [strongSelf.listener onSplashAdFilled:splashAd :error];
+                } else {
+                    NSString *errorMsg = @"Splash广告加载失败：数据解析失败";
+                    [ErrorHelper create:2001 : errorMsg];
+                    [Logs i: errorMsg];
+                }
+            }
+        });
         
     }];
 }

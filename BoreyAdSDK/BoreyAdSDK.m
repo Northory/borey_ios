@@ -16,7 +16,7 @@ static dispatch_once_t onceToken;
     return _sharedInstance;
 }
 
-- (void)initWithConfigAndCompletion:(BoreyConfig *)config :(void (^)(BOOL, NSError * _Nonnull))completion {
+- (void)initWithConfigAndCompletion:(BoreyConfig *)config :(void (^)(BOOL, NSError * ))completion {
     if (_initialized) {
         return;
     }
@@ -52,8 +52,7 @@ static dispatch_once_t onceToken;
     
     //biddingId生成
     if (completion) {
-        NSError * error = [ErrorHelper create: 0 : @"初始化成功"];
-        completion(YES, error);
+        completion(YES, nil);
     }
 }
 

@@ -27,17 +27,21 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
     NSString *urlStr = [BASE_URL stringByAppendingString:mediaId];
     NSDictionary *params = [self getParams:adType :tagId :width :height :bidFloor];
     
-    [Logs i: @"Request Url: %@", urlStr];
-    [Logs dict:@"Request Params" : params];
-    
-    [self doRequest:@"POST" :urlStr :params :^(NSDictionary * response, NSError * error) {
-        if (response) {
-            BoreyModel *boreyModel = [[BoreyModel alloc] initWithDict:response];
-            callback(boreyModel, nil);
-        } else {
-            callback(nil, error);
-        }
-    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        [Logs i: @"Request Url: %@", urlStr];
+        [Logs dict:@"Request Params" : params];
+        
+        [self doRequest:@"POST" :urlStr :params :^(NSDictionary * response, NSError * error) {
+            if (response) {
+                BoreyModel *boreyModel = [[BoreyModel alloc] initWithDict:response];
+                callback(boreyModel, nil);
+            } else {
+                callback(nil, error);
+            }
+        }];
+        
+    });
     
 }
 
@@ -52,8 +56,8 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
     WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectZero];
     // 获取User-Agent
     NSString *userAgent = webView.customUserAgent;
-    if (!userAgent) {
-        userAgent = @"";
+    if (!userAgent || [userAgent length] <= 0) {
+        userAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1";
     }
     
     //广告信息
@@ -82,10 +86,17 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
     NSString *did = [DeviceHelper getDeviceIdentifier];
     NSString *didMd5 = [Md5Helper md5: did];
     NSString *lang = [DeviceHelper getCurrentLanguage];
-    NSString *idfa = [DeviceHelper getIdfa];
-    NSString *idfaMd5 = [Md5Helper md5: idfa];
-    NSString *paid = [DeviceHelper getPAID];
     
+    NSString *paid = [DeviceHelper getPAID];
+    NSString *idfa = [config getIdfa];
+    
+    if (!idfa || [idfa length] <= 0) {
+        idfa = did;
+    }
+    
+    NSString *idfaMd5 = [Md5Helper md5: idfa];
+    
+    //paid
     NSDictionary * device = @{
         @"ua": userAgent,
         @"w": @(screenWidth),
@@ -173,8 +184,8 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
                         [Logs i:@"解析响应数据失败: %@", parseError.userInfo];
                         callback(nil, parseError);
                     } else {
-                        callback(responseDict, nil);
                         [Logs i:@"解析响应数据成功: %@", responseDict];
+                        callback(responseDict, nil);
                     }
                 }
             } else {

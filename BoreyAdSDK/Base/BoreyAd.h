@@ -15,6 +15,8 @@ typedef NS_ENUM(NSInteger, AdType) {
 
 @interface BoreyAd : NSObject
 
+-(long) getEcpm;
+
 +(NSString *) getAdImp: (AdType) adtype;
 
 @end

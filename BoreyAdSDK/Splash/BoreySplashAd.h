@@ -12,9 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BoreySplashAd : BoreyAd
-
-@property(nonatomic, strong) WKWebView * webview;
+@interface BoreySplashAd : NSObject
 
 -(void) showInWindow: (UIWindow *) window;
 

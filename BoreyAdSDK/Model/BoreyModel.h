@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(Bid *) getBid;
 
+
 @end
 
 NS_ASSUME_NONNULL_END

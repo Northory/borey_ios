@@ -19,4 +19,8 @@
     }
 }
 
+- (long)getEcpm {
+    return 0;
+}
+
 @end
