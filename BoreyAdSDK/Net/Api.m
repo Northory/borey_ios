@@ -64,7 +64,7 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
     NSDictionary * imp = @{
         @"id": requestId,
         @"tagid": tagId,
-        @"deeplink": @1,
+        @"deepLink": @1,
         @"impType": adImp,
         @"secure": @1,
         @"width": @(width),
