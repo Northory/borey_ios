@@ -1,0 +1,6 @@
+framework module BoreyAdSDK {
+  umbrella header "BoreyAdSDK.h"
+  export *
+
+  module * { export * }
+}

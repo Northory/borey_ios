@@ -13,7 +13,7 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = "17.5"
   spec.static_framework = true
   spec.ios.vendored_frameworks  = 'BoreyAdSDK.framework'
-  spec.source_files  = "output/BoreyAdSDK.framework/**/*.{h,m,swift}"
-  spec.public_header_files = 'output/BoreyAdSDK.framework/Headers/BoreyAdSDK.h'
+  spec.source_files  = "Products/BoreyAdSDK.framework/**/*.{h,m,swift}"
+  spec.public_header_files = 'Products/BoreyAdSDK.framework/Headers/BoreyAdSDK.h'
 
 end
