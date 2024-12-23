@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, retain) NSArray<NSString *> *dpTrackers;
 @property(nonatomic, retain) NSArray<Image *> *images;
 @property(nonatomic, copy) NSString *title;
-@property(nonatomic, copy) NSString *deepLink;
+@property(nonatomic, copy) NSString *deeplink;
 @property(nonatomic, copy) NSString *desc;
 @property(nonatomic, assign) long price;
 

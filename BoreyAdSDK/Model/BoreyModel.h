@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, retain) SeatBid *seatBids;
 @property(nonatomic, assign) NSInteger code;
+//自定义的错误信息
+@property(nonatomic, strong) NSString * errorMsg;
 
 -(instancetype)initWithDict: (NSDictionary *) dict;
 

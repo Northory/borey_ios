@@ -9,6 +9,7 @@
 #import "SeatBid.h"
 #import "Bid.h"
 #import "Image.h"
+#
 
 @implementation BoreyModel
 
@@ -18,12 +19,25 @@
         //解析数据
         _seatBids = [SeatBid new];
         if (dict) {
-            _seatBids.bids = [NSMutableArray new];
-            NSDictionary * seatBidDict = dict[@"bidid"];
+            NSMutableArray * bids = [NSMutableArray new];
+            _seatBids.bids = bids;
+            NSArray * seatbid = dict[@"seatbid"];
             _code = [dict[@"code"] integerValue];
-            if (_code == 0 && seatBidDict) {
-                
-            } 
+            if (_code == 0 && seatbid) {
+                for (NSDictionary * bidsObj in seatbid) {
+                    if (bidsObj) {
+                        NSArray * bidDicts = bidsObj[@"bid"];
+                        if (bidDicts) {
+                            for (NSDictionary * bidDict in bidDicts) {
+                                Bid * bid = [[Bid alloc] initWithDict: bidDict];
+                                [bids addObject:bid];
+                            }
+                        }
+                    }
+                }
+            } else {
+                _errorMsg = [NSString stringWithFormat:@"解析数据失败 -> code: %ld, 也有可能seatbid为空", _code];
+            }
         }
     }
     return self;
