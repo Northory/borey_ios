@@ -56,7 +56,7 @@
 - (void)onPageFinished {
     if (_webview) {
         NSDictionary *initData = @{
-            @"img_url": @"https://qh-material.taobao.com/product/image/jsafstfskandanf4yrqah3rrtw5sycy3.jpg?x-oss-process=image/resize,w_1080,h_1920,limit_0,m_fill&",
+            @"img_url": [_model getImg],
             @"time_out_second": @5
         };
         [_webview callWebMethod: @"init" : initData];

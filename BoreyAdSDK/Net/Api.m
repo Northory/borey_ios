@@ -35,6 +35,7 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
         [self doRequest:@"POST" :urlStr :params :^(NSDictionary * response, NSError * error) {
             if (response) {
                 BoreyModel *boreyModel = [[BoreyModel alloc] initWithDict:response];
+                [Logs i: @"解析BoreyModel: %@", boreyModel];
                 callback(boreyModel, nil);
             } else {
                 callback(nil, error);

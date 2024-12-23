@@ -68,7 +68,7 @@ function webToNative(method, params) {
     if (platform == 'android') {
         NativeBridge.webToNative(strData)
     } else if (platform == 'ios') {
-
+        window.webkit.messageHandlers.NativeBridge.postMessage(strData);
     }
 }
 

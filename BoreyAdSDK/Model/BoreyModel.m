@@ -54,6 +54,14 @@
     return nil;
 }
 
+- (NSString *) getDesc {
+    Bid *bid = [self getBid];
+    if (bid) {
+        return bid.desc;
+    }
+    return @"";
+}
+
 - (long) getPrice {
     Bid * bid = [self getBid];
     if(bid) {
@@ -83,8 +91,8 @@
 
 -(NSString *)getDeeplink {
     Bid * bid = [self getBid];
-    if (bid && bid.deepLink){
-        return bid.deepLink;
+    if (bid && bid.deeplink){
+        return bid.deeplink;
     }
     return @"";
 }
@@ -112,6 +120,19 @@
         return bid.clickTrackers;
     }
     return nil;
+}
+
+-(NSString *)description {
+    long price = [self getPrice];
+    NSString *title = [self getTitle];
+    NSString *desc = [self getDesc];
+    NSString *deeplink =[self getDeeplink];
+    NSString *imgUrl = [self getImg];
+    NSArray<NSString *> *imps = [self getImpTrackers];
+    NSArray<NSString *> *clicks = [self getClickTrackers];
+    NSArray<NSString *> *dps = [self getDpTrackers];
+    
+    return [NSString stringWithFormat:@"price: %ld, title: %@, desc: %@, deeplink: %@, imags: %@, imp: %@, click: %@, dp: %@", price, title, desc, deeplink, imgUrl, imps, clicks, dps];
 }
 
 @end
