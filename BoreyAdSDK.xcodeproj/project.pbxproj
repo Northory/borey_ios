@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
+		1BA2D5E12D1B071700CDBF53 /* SDK-Publish */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 1BA2D5E22D1B071700CDBF53 /* Build configuration list for PBXAggregateTarget "SDK-Publish" */;
+			buildPhases = (
+				1BA2D5E52D1B072F00CDBF53 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "SDK-Publish";
+			productName = "SDK-Publish";
+		};
 		1BCEF52A2CFCB798008B4A53 /* BoreyAdSDK-Script */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 1BCEF52B2CFCB798008B4A53 /* Build configuration list for PBXAggregateTarget "BoreyAdSDK-Script" */;
@@ -53,7 +64,6 @@
 		1B9611602D0C73AC00C8CE3F /* Md5Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B96115F2D0C73AC00C8CE3F /* Md5Helper.m */; };
 		1B9611622D0D478700C8CE3F /* Logs.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9611612D0D478700C8CE3F /* Logs.m */; };
 		1B9611642D0D479700C8CE3F /* Logs.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B9611632D0D479700C8CE3F /* Logs.h */; };
-		1BA2D5DD2D1B01A100CDBF53 /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BA2D5DC2D1B01A100CDBF53 /* Resources.bundle */; };
 		1BCEF4C82CFC3770008B4A53 /* BoreyAdSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCEF4C72CFC3770008B4A53 /* BoreyAdSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BCEF51D2CFC58CE008B4A53 /* BoreyAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCEF51C2CFC58CE008B4A53 /* BoreyAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BCEF5292CFCB378008B4A53 /* BoreyAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCEF5282CFCB378008B4A53 /* BoreyAd.m */; };
@@ -105,7 +115,8 @@
 		1B96115F2D0C73AC00C8CE3F /* Md5Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Md5Helper.m; sourceTree = "<group>"; };
 		1B9611612D0D478700C8CE3F /* Logs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Logs.m; sourceTree = "<group>"; };
 		1B9611632D0D479700C8CE3F /* Logs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logs.h; sourceTree = "<group>"; };
-		1BA2D5DC2D1B01A100CDBF53 /* Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resources.bundle; sourceTree = "<group>"; };
+		1BA2D5DE2D1B057B00CDBF53 /* BoreyAdSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BoreyAdSDK.bundle; sourceTree = "<group>"; };
+		1BA2D5E02D1B06CD00CDBF53 /* BoreyAdSDK.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = BoreyAdSDK.podspec; sourceTree = SOURCE_ROOT; };
 		1BCEF4C42CFC3770008B4A53 /* BoreyAdSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BoreyAdSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BCEF4C72CFC3770008B4A53 /* BoreyAdSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoreyAdSDK.h; sourceTree = "<group>"; };
 		1BCEF51C2CFC58CE008B4A53 /* BoreyAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoreyAd.h; sourceTree = "<group>"; };
@@ -175,7 +186,8 @@
 		1BCEF4C62CFC3770008B4A53 /* BoreyAdSDK */ = {
 			isa = PBXGroup;
 			children = (
-				1BA2D5DC2D1B01A100CDBF53 /* Resources.bundle */,
+				1BA2D5E02D1B06CD00CDBF53 /* BoreyAdSDK.podspec */,
+				1BA2D5DE2D1B057B00CDBF53 /* BoreyAdSDK.bundle */,
 				1B1592A02D0403CF00F0D065 /* Model */,
 				1B15929B2D03F48600F0D065 /* Net */,
 				1BCEF5222CFCB14F008B4A53 /* Helper */,
@@ -317,6 +329,9 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					1BA2D5E12D1B071700CDBF53 = {
+						CreatedOnToolsVersion = 15.4;
+					};
 					1BCEF4C32CFC3770008B4A53 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -340,6 +355,7 @@
 			targets = (
 				1BCEF4C32CFC3770008B4A53 /* BoreyAdSDK */,
 				1BCEF52A2CFCB798008B4A53 /* BoreyAdSDK-Script */,
+				1BA2D5E12D1B071700CDBF53 /* SDK-Publish */,
 			);
 		};
 /* End PBXProject section */
@@ -349,13 +365,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BA2D5DD2D1B01A100CDBF53 /* Resources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1BA2D5E52D1B072F00CDBF53 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# 工程文件所在的根目录\nSRCROOT='.'\n\n# 发布\npod trunk push BoreyAdSDK.podspec --verbose --allow-warnings\n\n# 检查\npod spec lint BoreyAdSDK.podspec --verbose --use-libraries --allow-warnings\n \n\n";
+		};
 		1BCEF5302CFCB7B8008B4A53 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -372,7 +404,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n# 工程文件所在的根目录\nSRCROOT='.'\n# sdk 编译过程的输出文件路径\nWRK_DIR=./build\n# 创建 sdk 输出路径\nmkdir -p ${SRCROOT}/Products\n \n \n \n \n \n# 编译静态库framework名字 警告！！！！！！需要修改\nFMK_NAME='BoreyAdSDK'\n# 真机 framework 输出文件路径\nDEVICE_DIR=${WRK_DIR}/Release-iphoneos/${FMK_NAME}.framework\n# 模拟器 framework 输出文件路径\nSIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${FMK_NAME}.framework\n \n# 编译静态库framework\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphoneos build -UseModernBuildSystem=NO\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphonesimulator  build -UseModernBuildSystem=NO\n \n# 最终 sdk 输出的文件路径\nINSTALL_DIR=${SRCROOT}/Products/${FMK_NAME}.framework\n# 清理之前生成的 sdk\nif [ -d \"${INSTALL_DIR}\" ]\nthen\nrm -rf \"${INSTALL_DIR}\"\nfi\n# 移动一个 framework 到 SDK输出路径中\ncp -LR \"${DEVICE_DIR}\" \"${INSTALL_DIR}\"\n \n# 合并真机和模拟器的静态库.framework\nlipo -create \"${DEVICE_DIR}/${FMK_NAME}\" \"${SIMULATOR_DIR}/${FMK_NAME}\" -output \"${INSTALL_DIR}/${FMK_NAME}\"\n \n \n# 资源文件bundle名字 警告！！！！！！需要修改\n# BUNDLE_NAME='BoreyResources'\n# 真机 bundle 输出文件路径\n# BUNDLE_DEVICE_DIR=${WRK_DIR}/Release-iphoneos/${BUNDLE_NAME}.bundle\n# 模拟器 bundle 输出文件路径\n# BUNDLE_SIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${BUNDLE_NAME}.bundle\n# 编译资源文件bundle\n# xcodebuild -configuration \"Release\" -target \"${BUNDLE_NAME}\" -sdk iphoneos build -UseModernBuildSystem=NO\n# xcodebuild -configuration \"Release\" -target \"${BUNDLE_NAME}\" -sdk iphonesimulator  build -UseModernBuildSystem=NO\n \n# 最终 资源文件 输出的文件路径\n# BUNDLE_INSTALL_DIR=${SRCROOT}/Products/${BUNDLE_NAME}.bundle\n# 清理之前生成的 sdk\n# if [ -d \"${BUNDLE_INSTALL_DIR}\" ]\n# then\n# rm -rf \"${BUNDLE_INSTALL_DIR}\"\n# fi\n# 移动一个 budle 到 资源文件输出路径中\n# cp -LR \"${BUNDLE_DEVICE_DIR}\" \"${BUNDLE_INSTALL_DIR}\"\n \n# 合并真机和模拟器的资源文件bundle\n# lipo -create \"${BUNDLE_DEVICE_DIR}/${BUNDLE_NAME}\" \"${BUNDLE_SIMULATOR_DIR}/${BUNDLE_NAME}\" -output \"${BUNDLE_INSTALL_DIR}/${BUNDLE_NAME}\"\n \n \n# 清理编译文件\nrm -r \"${WRK_DIR}\"\n \n# 打开SDK目录\nopen \"${SRCROOT}/Products\"\n";
+			shellScript = "#!/bin/sh\n# 工程文件所在的根目录\nSRCROOT='.'\n# sdk 编译过程的输出文件路径\nWRK_DIR=./build\n# 创建 sdk 输出路径\nmkdir -p ${SRCROOT}/Products\n \n \n \n \n \n# 编译静态库framework名字 警告！！！！！！需要修改\nFMK_NAME='BoreyAdSDK'\n# 真机 framework 输出文件路径\nDEVICE_DIR=${WRK_DIR}/Release-iphoneos/${FMK_NAME}.framework\n# 模拟器 framework 输出文件路径\nSIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${FMK_NAME}.framework\n \n# 编译静态库framework\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphoneos build -UseModernBuildSystem=NO\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphonesimulator  build -UseModernBuildSystem=NO\n \n# 最终 sdk 输出的文件路径\nINSTALL_DIR=${SRCROOT}/Products/${FMK_NAME}.framework\n# 清理之前生成的 sdk\nif [ -d \"${INSTALL_DIR}\" ]\nthen\nrm -rf \"${INSTALL_DIR}\"\nfi\n# 移动一个 framework 到 SDK输出路径中\ncp -LR \"${DEVICE_DIR}\" \"${INSTALL_DIR}\"\n \n# 合并真机和模拟器的静态库.framework\nlipo -create \"${DEVICE_DIR}/${FMK_NAME}\" \"${SIMULATOR_DIR}/${FMK_NAME}\" -output \"${INSTALL_DIR}/${FMK_NAME}\"\n \n \n# 资源文件bundle名字 警告！！！！！！需要修改\n# BUNDLE_NAME='BoreyResources'\n# 真机 bundle 输出文件路径\n# BUNDLE_DEVICE_DIR=${WRK_DIR}/Release-iphoneos/${BUNDLE_NAME}.bundle\n# 模拟器 bundle 输出文件路径\n# BUNDLE_SIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${BUNDLE_NAME}.bundle\n# 编译资源文件bundle\n# xcodebuild -configuration \"Release\" -target \"${BUNDLE_NAME}\" -sdk iphoneos build -UseModernBuildSystem=NO\n# xcodebuild -configuration \"Release\" -target \"${BUNDLE_NAME}\" -sdk iphonesimulator  build -UseModernBuildSystem=NO\n \n# 最终 资源文件 输出的文件路径\n# BUNDLE_INSTALL_DIR=${SRCROOT}/Products/${BUNDLE_NAME}.bundle\n# 清理之前生成的 sdk\n# if [ -d \"${BUNDLE_INSTALL_DIR}\" ]\n# then\n# rm -rf \"${BUNDLE_INSTALL_DIR}\"\n# fi\n# 移动一个 budle 到 资源文件输出路径中\n# cp -LR \"${BUNDLE_DEVICE_DIR}\" \"${BUNDLE_INSTALL_DIR}\"\n \n# 合并真机和模拟器的资源文件bundle\n# lipo -create \"${BUNDLE_DEVICE_DIR}/${BUNDLE_NAME}\" \"${BUNDLE_SIMULATOR_DIR}/${BUNDLE_NAME}\" -output \"${BUNDLE_INSTALL_DIR}/${BUNDLE_NAME}\"\n \n# 复制bundle文件到Products中\ncp -r \"${SRCROOT}/${FMK_NAME}/${FMK_NAME}.bundle\" \"${SRCROOT}/Products\"\n \n# 清理编译文件\nrm -r \"${WRK_DIR}\"\n \n# 打开SDK目录\nopen \"${SRCROOT}/Products\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -413,6 +445,24 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		1BA2D5E32D1B071700CDBF53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8F4K56836R;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1BA2D5E42D1B071700CDBF53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8F4K56836R;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		1BCEF4C92CFC3770008B4A53 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -632,6 +682,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1BA2D5E22D1B071700CDBF53 /* Build configuration list for PBXAggregateTarget "SDK-Publish" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BA2D5E32D1B071700CDBF53 /* Debug */,
+				1BA2D5E42D1B071700CDBF53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1BCEF4BE2CFC3770008B4A53 /* Build configuration list for PBXProject "BoreyAdSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
