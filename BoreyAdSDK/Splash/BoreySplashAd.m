@@ -8,6 +8,7 @@
 #import "BoreySplashAd.h"
 #import "CustomWebView.h"
 #import "BoreyModel.h"
+#import "Logs.h"
 
 @interface BoreySplashAd () <CustomWebViewDelegate>
 
@@ -37,12 +38,12 @@
     _webview = [[CustomWebView alloc] create:window.bounds :nil];
     _webview.webViewDelegate = self;
     // 获取HTML文件的路径
-    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"BoreySplash" ofType:@"bundle"]];
+    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"BoreyResources" ofType:@"bundle"]];
     NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html"];
 
     // 检查文件是否存在
     if (!htmlPath) {
-        NSLog(@"HTML file does not exist");
+        [Logs i: @"HTML file does not exist"];
         return;
     }
     
@@ -54,7 +55,7 @@
 }
 
 - (void)onPageFinished {
-    if (_webview) {
+    if (_webview && _model) {
         NSDictionary *initData = @{
             @"img_url": [_model getImg],
             @"time_out_second": @5
@@ -65,6 +66,9 @@
 
 - (void)onClickAd {
     NSLog(@"Splash onClickAd");
+    if (_webview) {
+        [_webview removeFromSuperview];
+    }
 }
 
 - (void)onTimeReached {

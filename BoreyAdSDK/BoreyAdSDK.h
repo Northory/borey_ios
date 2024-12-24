@@ -19,6 +19,8 @@ FOUNDATION_EXPORT const unsigned char BoreyAdSDKVersionString[];
 #import <BoreyAdSDK/BoreyConfig.h>
 #import <BoreyAdSDK/ErrorHelper.h>
 #import <BoreyAdSDK/BoreyAd.h>
+#import <BoreyAdSDK/BoreyModel.h>
+
 
 
 NS_ASSUME_NONNULL_BEGIN

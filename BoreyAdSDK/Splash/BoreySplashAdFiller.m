@@ -37,7 +37,8 @@
                     [Logs i: @"Splash广告加载失败：%@", error.userInfo];
                 } else if(boreyModel && [boreyModel valid]) {
                     
-                    BoreySplashAd * splashAd = [BoreySplashAd new];
+                    BoreySplashAd * splashAd = [[BoreySplashAd alloc] initWithModel: boreyModel];
+
                     [strongSelf.listener onSplashAdFilled:splashAd :error];
                 } else {
                     NSString *errorMsg = @"Splash广告加载失败：数据解析失败";

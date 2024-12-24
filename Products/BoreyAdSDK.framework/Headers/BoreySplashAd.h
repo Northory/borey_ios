@@ -9,12 +9,15 @@
 #import <BoreyAdSDK/BoreyAd.h>
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
+#import <BoreyAdSDK/BoreyModel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BoreySplashAd : NSObject
 
 -(void) showInWindow: (UIWindow *) window;
+
+-(instancetype) initWithModel: (BoreyModel *) model;
 
 @end
 
