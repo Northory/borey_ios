@@ -11,6 +11,8 @@
 extern NSString *const PerfKeyUserBiddingId;
 extern NSString *const PerfKeyUserIDFA;
 
+extern NSInteger const SplashShowError;
+
 @interface Constants : NSObject
 
 +(NSString*) getBiddingId;

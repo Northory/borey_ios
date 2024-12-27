@@ -13,6 +13,8 @@
 NSString *const PerfKeyUserBiddingId = @"perf_key_user_bidding_id";
 NSString *const PerfKeyUserIDFA = @"perf_key_user_idfa";
 
+NSInteger const SplashShowError = 2001;
+
 @implementation Constants
 
 + (NSString *) getBiddingId {

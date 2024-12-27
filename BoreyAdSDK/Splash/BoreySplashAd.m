@@ -9,6 +9,8 @@
 #import "CustomWebView.h"
 #import "BoreyModel.h"
 #import "Logs.h"
+#import "Constants.h"
+#import "ErrorHelper.h"
 
 @interface BoreySplashAd () <CustomWebViewDelegate>
 
@@ -32,6 +34,10 @@
 - (void)showInWindow:(UIWindow *)window {
     
     if (_webview) {
+        [Logs i: @"广告已展示过"];
+        if (_listener) {
+            [_listener onAdFailed: [ErrorHelper create: SplashShowError :@"广告已展示过"]];
+        }
         return;
     }
     
@@ -43,7 +49,10 @@
 
     // 检查文件是否存在
     if (!htmlPath) {
-        [Logs i: @"HTML file does not exist"];
+        [Logs i: @"Splash onAdFailed: 广告样式缺失"];
+        if (_listener) {
+            [_listener onAdFailed: [ErrorHelper create: SplashShowError :@"广告样式缺失"]];
+        }
         return;
     }
     
@@ -52,6 +61,10 @@
 
     // 将webView添加到视图中
     [window addSubview:_webview];
+    [Logs i: @"Splash onAdDisplayed"];
+    if (_listener) {
+        [_listener onAdDisplayed];
+    }
 }
 
 - (void)onPageFinished {
@@ -65,23 +78,38 @@
 }
 
 - (void)onClickAd {
-    NSLog(@"Splash onClickAd");
     if (_webview) {
         [_webview removeFromSuperview];
+    }
+    [Logs i: @"Splash onClick"];
+    if (_listener) {
+        [_listener onClick];
     }
 }
 
 - (void)onTimeReached {
-    NSLog(@"Splash onTimeReached");
     if(_webview) {
         [_webview removeFromSuperview];
+    }
+    [Logs i: @"Splash onAdClosed"];
+    if (_listener) {
+        [_listener onAdClosed];
     }
 }
 
 - (void)onClickCloseBtn {
-    NSLog(@"Splash onClickCloseBtn");
     if (_webview) {
         [_webview removeFromSuperview];
+    }
+    [Logs i: @"Splash onAdClosed"];
+    if (_listener) {
+        [_listener onAdClosed];
+    }
+}
+
+- (void)doRelease {
+    if (_listener) {
+        _listener = nil;
     }
 }
 
