@@ -87,7 +87,24 @@
     }
     [Logs i: @"Splash onClick"];
     if (_model) {
-        [Api report: [_model getClickTrackers] : [_model getPrice]];
+        long price = [_model getPrice];
+        NSArray<NSString *> *dpTrackers = [_model getDpTrackers];
+        NSArray<NSString *> *clickTrackers = [_model getClickTrackers];
+        [Api report: clickTrackers : price];
+        NSString *deeplink = [_model getDeeplink];
+        [Logs i: @"deeplink: %@", deeplink];
+        NSURL *url = [NSURL URLWithString:deeplink];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            [Logs i: @"可以跳转"];
+            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+                if (success) {
+                    [Logs i: @"跳转成功"];
+                    [Api report: dpTrackers : price];
+                }
+            }];
+        } else {
+            [Logs i: @"无法跳转"];
+        }
     }
     if (_listener) {
         [_listener onClick];
