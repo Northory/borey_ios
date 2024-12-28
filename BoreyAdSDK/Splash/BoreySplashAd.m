@@ -11,6 +11,7 @@
 #import "Logs.h"
 #import "Constants.h"
 #import "ErrorHelper.h"
+#import "Api.h"
 
 @interface BoreySplashAd () <CustomWebViewDelegate>
 
@@ -62,6 +63,9 @@
     // 将webView添加到视图中
     [window addSubview:_webview];
     [Logs i: @"Splash onAdDisplayed"];
+    if (_model) {
+        [Api report: [_model getImpTrackers] : [_model getPrice]];
+    }
     if (_listener) {
         [_listener onAdDisplayed];
     }
@@ -82,6 +86,9 @@
         [_webview removeFromSuperview];
     }
     [Logs i: @"Splash onClick"];
+    if (_model) {
+        [Api report: [_model getClickTrackers] : [_model getPrice]];
+    }
     if (_listener) {
         [_listener onClick];
     }
@@ -111,6 +118,13 @@
     if (_listener) {
         _listener = nil;
     }
+}
+
+- (long)getEcpm {
+    if (_model) {
+        return [_model getPrice];
+    }
+    return 0;
 }
 
 @end

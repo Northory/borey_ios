@@ -46,6 +46,20 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
     
 }
 
+
++ (void) report: (NSArray<NSString *> *) urls :  (long) price  {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        for (NSString *url in urls) {
+            NSString *encodePrice = [NSString stringWithFormat:@"%ld", price];
+            [Logs i: @"encodePrice: %ld -> %@", price, encodePrice];
+            NSString *realUrl = [url stringByReplacingOccurrencesOfString:@"{AUCTION_PRICE}" withString: encodePrice];
+            [self doRequest:@"GET" :realUrl : nil :^(NSDictionary * response, NSError * error) {
+                
+            }];
+        }
+    });
+}
+
 + (NSDictionary* ) getParams: (AdType) adType : (NSString *) tagId : (NSInteger) width : (NSInteger) height : (long) bidFloor   {
     
     BoreyConfig *config = BoreyAdSDK.sharedInstance.config;
@@ -147,20 +161,22 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
 //⚠️注意子线程发起请求
 + (void)doRequest:(NSString *)method :(NSString *)urlStr :(NSDictionary *)params :(void (^)(NSDictionary * responseDict, NSError * error))callback {
     NSURL *url = [NSURL URLWithString:urlStr];
-    NSError *paramsParseError;
-    NSData *requestBody = [NSJSONSerialization dataWithJSONObject:params options:0 error: &paramsParseError];
-    if (paramsParseError) {
-        [Logs e: @"Parse params error: %@", paramsParseError.userInfo];
-        callback(nil, paramsParseError);
-        return;
-    }
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [Logs i: @"Req: %@", request];
+    if (params) {
+        NSError *paramsParseError;
+        NSData *requestBody = [NSJSONSerialization dataWithJSONObject:params options:0 error: &paramsParseError];
+        if (paramsParseError) {
+            [Logs e: @"Parse params error: %@", paramsParseError.userInfo];
+            callback(nil, paramsParseError);
+            return;
+        }
+        [request setHTTPBody: requestBody];
+        [Logs i: @"Req Body: %@", requestBody];
+    }
     [request setHTTPMethod: method];
-    [request setHTTPBody: requestBody];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [Logs i: @"Req: %@", request];
-    [Logs i: @"Req Body: %@", requestBody];
      //创建会话配置
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
      //创建会话

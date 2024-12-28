@@ -15,7 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(void) fetchAdInfo: (AdType)adType : (NSInteger )width : (NSInteger )height : (NSString *)tagId : (long) bidFloor : (void (^)(BoreyModel *, NSError *)) callback ;
 
-+(void) doRequest:(NSString *) method : (NSString *) urlStr : (NSDictionary *) params : (void (^)(NSDictionary *, NSError *)) callback;
++(void) doRequest:(NSString *) method : (NSString *) urlStr : (nullable NSDictionary *) params : (void (^)(NSDictionary *, NSError *)) callback;
+
++(void) report: (NSArray<NSString *> *) urls :  (long) price;
 
 @end
 
