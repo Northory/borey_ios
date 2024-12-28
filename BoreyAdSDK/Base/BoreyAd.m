@@ -23,4 +23,8 @@
     return 0;
 }
 
+- (void)doRelease {
+    
+}
+
 @end
