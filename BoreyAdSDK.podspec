@@ -7,7 +7,7 @@ Pod::Spec.new do |spec|
   spec.description  = "BoreyAdSDK - 北风广告库"
   spec.author       = { "Borey" => "northwind@tsar.freeqiye.com" }
   spec.homepage     = "git@github.com:Northory/borey_ios.git"
-  spec.source       = { :git => "git@github.com:Northory/borey_ios.git", :tag => spec.version }
+  spec.source       = { :git => "https://github.com/Northory/borey_ios.git", :tag => spec.version }
   spec.requires_arc = true
   spec.platform      = :ios, "12.0"
   spec.static_framework = true
