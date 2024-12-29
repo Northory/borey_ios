@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   spec.platform      = :ios, "12.0"
   spec.static_framework = true
-  spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 arm64' }
+  spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'arm64 armv7 x86_64' }
   spec.ios.vendored_frameworks  = 'Products/BoreyAdSDK.framework'
   spec.source_files  = "Products/BoreyAdSDK.framework/**/*.{h,m,swift}"
   spec.public_header_files = 'Products/BoreyAdSDK.framework/Headers/BoreyAdSDK.h'
