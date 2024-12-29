@@ -33,7 +33,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (strongSelf.listener) {
                 if (error) {
-                    [Logs e: @"Splash广告加载失败：%@", error.userInfo];
+                    [Logs e: @"Splash广告加载失败：%@", error];
                     [strongSelf.listener onSplashAdFilled: nil :error];
                 } else if(boreyModel && [boreyModel valid]) {
                     BoreySplashAd * splashAd = [[BoreySplashAd alloc] initWithModel: boreyModel];

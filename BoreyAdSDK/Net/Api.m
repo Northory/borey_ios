@@ -24,7 +24,16 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
 
 +(void) fetchAdInfo: (AdType)adType : (NSInteger)width : (NSInteger )height : (NSString *)tagId : (long) bidFloor : (void (^)(BoreyModel * responseDict, NSError * error))callback {
     
-    NSString *mediaId = BoreyAdSDK.sharedInstance.config.mediaId;
+    BoreyConfig *config = BoreyAdSDK.sharedInstance.config;
+    NSString *mediaId;
+    if (config && config.mediaId) {
+        mediaId = config.mediaId;
+    }
+    if(!mediaId) {
+        callback(nil, [ErrorHelper create:1001 :@"media id 配置异常"]);
+        return;
+    }
+
     NSString *urlStr = [BASE_URL stringByAppendingString:mediaId];
     NSDictionary *params = [self getParams:adType :tagId :width :height :bidFloor];
     
