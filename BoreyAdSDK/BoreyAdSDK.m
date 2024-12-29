@@ -19,6 +19,7 @@ static dispatch_once_t onceToken;
 
 - (void)initWithConfigAndCompletion:(BoreyConfig *)config :(void (^)(BOOL, NSError * ))completion {
     if (_initialized) {
+        [Logs i: @"已初始化"];
         return;
     }
     
@@ -48,23 +49,13 @@ static dispatch_once_t onceToken;
     
     _config = config;
     _initialized = YES;
-    
+    [Logs i: @"初始化成功"];
     //biddingId生成
     if (completion) {
         completion(YES, nil);
     }
 }
 
--(NSString *) getBiddingId {
-    return [PreferenceHelper.sharedInstance getStr: PerfKeyUserBiddingId];;
-}
 
-- (instancetype) init {
-    self = [super self];
-    if (self) {
-        
-    }
-    return self;
-}
 
 @end
