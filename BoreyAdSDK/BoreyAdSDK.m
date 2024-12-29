@@ -3,6 +3,7 @@
 #import "Common/Constants.h"
 #import "Helper/RandomHelper.h"
 #import "Common/DeviceHelper.h"
+#import "Logs.h"
 
 @implementation BoreyAdSDK
 
@@ -38,14 +39,12 @@ static dispatch_once_t onceToken;
     }
     
     NSString *biddingId = [PreferenceHelper.sharedInstance getStr: PerfKeyUserBiddingId];
-    NSLog(@"Borey-Init -> biddingId: %@", biddingId);
     if (!biddingId || biddingId.length != 32) {
         NSString *userBiddingId = [RandomHelper randomStr:32];
-        NSLog(@"Borey-Init -> userBiddingId: %@", userBiddingId);
+        [Logs i: @"biddingId: %@", biddingId];
         [PreferenceHelper.sharedInstance saveStr:PerfKeyUserBiddingId : userBiddingId];
     }
-    
-    [DeviceHelper requestIDFA];
+
     
     _config = config;
     _initialized = YES;

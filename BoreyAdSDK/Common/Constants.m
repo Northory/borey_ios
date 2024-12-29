@@ -12,6 +12,7 @@
 
 NSString *const PerfKeyUserBiddingId = @"perf_key_user_bidding_id";
 NSString *const PerfKeyUserIDFA = @"perf_key_user_idfa";
+NSString *const PerfKeyUserAgent = @"perf_key_user_agent";
 
 NSInteger const SplashShowError = 2001;
 

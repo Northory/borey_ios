@@ -9,6 +9,7 @@ function init(params) {
     let count = timeOutSecond
     let contentBg = document.getElementById('content-bg');
     let closeBtn = document.getElementById('close-btn');
+    let container = document.getElementById('container');
     let img = document.getElementById('img')
     
     if (statusBarHeight) {
@@ -38,11 +39,11 @@ function init(params) {
         }
     }, 1000)
 
-    img.addEventListener('touchstart', (e) => {
+    container.addEventListener('touchstart', (e) => {
         startY = e.touches[0].clientY;
     });
 
-    img.addEventListener('touchend', (e) => {
+    container.addEventListener('touchend', (e) => {
         const endY = e.changedTouches[0].clientY;
         const deltaY = endY - startY;
         if (deltaY < 0) {

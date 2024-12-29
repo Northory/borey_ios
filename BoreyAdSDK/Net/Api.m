@@ -17,6 +17,7 @@
 #import "Logs.h"
 #import <WebKit/WebKit.h>
 
+
 @implementation Api
 
 NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
@@ -47,17 +48,34 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
 }
 
 
-+ (void) report: (NSArray<NSString *> *) urls :  (long) price  {
++ (void) report: (NSArray<NSString *> *) urls :  (long) price : (ReportType) reportType : (AdType) adType {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         for (NSString *url in urls) {
             NSString *encodePrice = [NSString stringWithFormat:@"%ld", price];
-            [Logs i: @"encodePrice: %ld -> %@", price, encodePrice];
+            NSString *desc = [self getReportDesc: reportType];
+            NSString *adName = [BoreyAd getAdTypeName:adType];
             NSString *realUrl = [url stringByReplacingOccurrencesOfString:@"{AUCTION_PRICE}" withString: encodePrice];
             [self doRequest:@"GET" :realUrl : nil :^(NSDictionary * response, NSError * error) {
-                
+                if (error) {
+                    [Logs e: @"%@ 的 %@ 上报失败: %@", adName, desc, realUrl];
+                } else {
+                    [Logs i: @"%@ 的 %@ 上报成功: %@", adName, desc, realUrl];
+                }
             }];
         }
     });
+}
+
++ (NSString *) getReportDesc: (ReportType) reportType {
+    switch (reportType) {
+        case Imp:
+            return @"Imp";
+        case Click:
+            return @"Click";
+        case Dp:
+            return @"Dp";
+    }
+    return @"Unknown";
 }
 
 + (NSDictionary* ) getParams: (AdType) adType : (NSString *) tagId : (NSInteger) width : (NSInteger) height : (long) bidFloor   {
@@ -70,10 +88,14 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
     // 创建一个UIWebView来获取User-Agent
     WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectZero];
     // 获取User-Agent
-    NSString *userAgent = webView.customUserAgent;
+    NSString *userAgent = [PreferenceHelper.sharedInstance getStr:PerfKeyUserAgent];
+    
+    
     if (!userAgent || [userAgent length] <= 0) {
-        userAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1";
+        userAgent = webView.configuration.applicationNameForUserAgent;
     }
+    
+    [Logs i: @"userAgent: %@", userAgent];
     
     //广告信息
     NSDictionary * imp = @{
@@ -106,7 +128,7 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
     NSString *idfa = [config getIdfa];
     
     if (!idfa || [idfa length] <= 0) {
-        idfa = did;
+        idfa = @"00000000-0000-0000-0000-000000000000";
     }
     
     NSString *idfaMd5 = [Md5Helper md5: idfa];
@@ -162,7 +184,6 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
 + (void)doRequest:(NSString *)method :(NSString *)urlStr :(NSDictionary *)params :(void (^)(NSDictionary * responseDict, NSError * error))callback {
     NSURL *url = [NSURL URLWithString:urlStr];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [Logs i: @"Req: %@", request];
     if (params) {
         NSError *paramsParseError;
         NSData *requestBody = [NSJSONSerialization dataWithJSONObject:params options:0 error: &paramsParseError];
@@ -172,7 +193,6 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
             return;
         }
         [request setHTTPBody: requestBody];
-        [Logs i: @"Req Body: %@", requestBody];
     }
     [request setHTTPMethod: method];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -184,30 +204,41 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
     // 发起请求
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
-            [Logs i:@"请求失败： %@", error.userInfo];
+            [Logs e:@"请求失败： %@", error.userInfo];
             callback(nil, error);
             return;
         }
-        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        [Logs i:@"响应成功： %@", string];
+
         // 解析响应数据
         if([response isKindOfClass:[NSHTTPURLResponse class]]) {
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
             if (httpResponse.statusCode == 200) {
                 if (data) {
-                    NSError *parseError = nil;
-                    NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-                    if (parseError) {
-                        [Logs i:@"解析响应数据失败: %@", parseError.userInfo];
-                        callback(nil, parseError);
+                    if (data.length > 0) {
+                        NSError *parseError = nil;
+                        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+                        if (parseError) {
+                            NSString *errorStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                            [Logs e:@"解析响应数据失败: %@, 原始错误数据： %@", parseError.userInfo, errorStr];
+                            callback(nil, parseError);
+                        } else {
+                            [Logs dict:@"响应数据" :responseDict];
+                            callback(responseDict, nil);
+                        }
                     } else {
-                        [Logs i:@"解析响应数据成功: %@", responseDict];
-                        callback(responseDict, nil);
+                        [Logs i:@"响应成功，且无返回数据"];
+                        callback(@{}, nil);
                     }
+                } else {
+                    [Logs e:@"请求失败，code: %d, msg: ", httpResponse.statusCode, httpResponse.description];
+                    callback(nil, [ErrorHelper create:httpResponse.statusCode : @"网络错误, 响应数据为空"]);
                 }
             } else {
-                [Logs i:@"请求失败，code: %d, msg: ", httpResponse.statusCode, httpResponse.description];
+                [Logs e:@"请求失败，code: %d, msg: ", httpResponse.statusCode, httpResponse.description];
+                callback(nil, [ErrorHelper create:httpResponse.statusCode : @"请求失败, 网络错误"]);
             }
+        } else {
+            callback(nil, [ErrorHelper create: -1 : @"请求失败, 网络错误"]);
         }
     }];
 

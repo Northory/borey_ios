@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 #import "CustomWebView.h"
 #import "Logs.h"
+#import "PreferenceHelper.h"
+#import "Constants.h"
 
 @implementation CustomWebView
 
@@ -37,7 +39,7 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:0 error:&error];
 
     if (error) {
-        [Logs i:@"Send data to web error: %@", error.userInfo];
+        [Logs e:@"Send data to web error: %@", error.userInfo];
         return;
     }
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
@@ -57,14 +59,14 @@
 - (void) webToNative: (NSString *) data {
     [Logs i: @"webToNative: %@", data];
     if (!_webViewDelegate) {
-        [Logs i: @"webToNative: 没有注册监听器"];
+        [Logs e: @"webToNative: 没有注册监听器"];
         return;
     }
     NSError *error;
     NSData *jsonData = [data dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     if(error) {
-        [Logs i: @"解析web数据失败: %@", error.userInfo];
+        [Logs e: @"解析web数据失败: %@", error.userInfo];
         return;
     }
     NSString *method = [dictionary objectForKey: @"method"];
@@ -80,14 +82,27 @@
 
 //网页加载完成
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    [Logs i: @"网页加载完成"];
+    [Logs i: @"样式加载完成"];
     if (_webViewDelegate) {
         [_webViewDelegate onPageFinished];
     }
+    NSString *userAgent = [PreferenceHelper.sharedInstance getStr: PerfKeyUserAgent];
+    if (!userAgent || [userAgent length] <= 0) {
+        [self evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id result, NSError *error) {
+            if (result && [result isKindOfClass: [NSString class]]) {
+                NSString *agent = (NSString *)result;
+                [Logs i: @"User Agent: %@", agent];
+                [PreferenceHelper.sharedInstance saveStr:PerfKeyUserAgent :agent];
+            } else {
+                [Logs e: @"User Agent 获取失败: %@", error];
+            }
+        }];
+    }
+    
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    [Logs i: @"网页加载失败"];
+    [Logs e: @"样式加载失败"];
     if (_webViewDelegate) {
         [_webViewDelegate onLoadHtmlError:error];
     }

@@ -19,6 +19,15 @@
     }
 }
 
++ (NSString *)getAdTypeName:(AdType)adtype {
+    switch (adtype) {
+        case Splash:
+            return @"Splash";
+        case Express:
+            return @"Express";
+    }
+}
+
 - (long)getEcpm {
     return 0;
 }

@@ -10,6 +10,7 @@
 
 extern NSString *const PerfKeyUserBiddingId;
 extern NSString *const PerfKeyUserIDFA;
+extern NSString *const PerfKeyUserAgent;
 
 extern NSInteger const SplashShowError;
 

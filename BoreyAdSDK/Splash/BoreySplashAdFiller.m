@@ -31,19 +31,17 @@
         __strong typeof(weakSelf) strongSelf = weakSelf;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [Logs i:@"callback success... %@", strongSelf.listener];
             if (strongSelf.listener) {
                 if (error) {
-                    [Logs i: @"Splash广告加载失败：%@", error.userInfo];
+                    [Logs e: @"Splash广告加载失败：%@", error.userInfo];
+                    [strongSelf.listener onSplashAdFilled: nil :error];
                 } else if(boreyModel && [boreyModel valid]) {
-                    
                     BoreySplashAd * splashAd = [[BoreySplashAd alloc] initWithModel: boreyModel];
-
                     [strongSelf.listener onSplashAdFilled:splashAd :error];
                 } else {
                     NSString *errorMsg = @"Splash广告加载失败：数据解析失败";
                     [strongSelf.listener onSplashAdFilled: nil :[ErrorHelper create:2001 : errorMsg]];
-                    [Logs i: errorMsg];
+                    [Logs e: errorMsg];
                 }
             }
         });

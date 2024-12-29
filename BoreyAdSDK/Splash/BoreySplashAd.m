@@ -65,7 +65,7 @@
     [window addSubview:_webview];
     [Logs i: @"Splash onAdDisplayed"];
     if (_model) {
-        [Api report: [_model getImpTrackers] : [_model getPrice]];
+        [Api report: [_model getImpTrackers] : [_model getPrice] : Imp : Splash];
     }
     if (_listener) {
         [_listener onAdDisplayed];
@@ -93,7 +93,7 @@
         long price = [_model getPrice];
         NSArray<NSString *> *dpTrackers = [_model getDpTrackers];
         NSArray<NSString *> *clickTrackers = [_model getClickTrackers];
-        [Api report: clickTrackers : price];
+        [Api report: clickTrackers : price : Click : Splash];
         NSString *deeplink = [_model getDeeplink];
         [Logs i: @"deeplink: %@", deeplink];
         NSURL *url = [NSURL URLWithString:deeplink];
@@ -102,7 +102,7 @@
             [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
                 if (success) {
                     [Logs i: @"跳转成功"];
-                    [Api report: dpTrackers : price];
+                    [Api report: dpTrackers : price : Dp : Splash];
                 }
             }];
         } else {

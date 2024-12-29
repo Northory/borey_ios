@@ -19,6 +19,8 @@ typedef NS_ENUM(NSInteger, AdType) {
 
 +(NSString *) getAdImp: (AdType) adtype;
 
++(NSString *) getAdTypeName: (AdType) adtype;
+
 - (void) doRelease;
 
 @end
