@@ -31,7 +31,7 @@ static dispatch_once_t onceToken;
         return;
     }
     
-    if (!config.mediaId) {
+    if (!config.mediaId || config.mediaId.length <= 0) {
         if (completion) {
             NSError * error = [ErrorHelper create:1001 : @"mediaId配置异常"];
             completion(NO, error);

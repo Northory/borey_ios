@@ -12,6 +12,8 @@
 #import "Logs.h"
 #import "ErrorHelper.h"
 #import "BoreySplashAd.h"
+#import "BoreyAdSDK/BoreyAdSDK.h"
+#import "BoreyAdSDK/BoreyConfig.h"
 
 @interface BoreySplashAdFiller()
 
@@ -21,6 +23,15 @@
 @implementation BoreySplashAdFiller
 
 -(void)fill:(NSString *)tagId bidFloor:(long)bidFloor {
+    
+    BOOL sdkInited = [BoreyAdSDK.sharedInstance initialized];
+    if(!sdkInited) {
+        if (_listener) {
+            [_listener onSplashAdFilled:nil :[ErrorHelper create:1001 : @"Borey SDK未初始化"]];
+        }
+        return;
+    }
+    
     UIScreen *mainScreen = [UIScreen mainScreen];
     CGRect screenBounds = mainScreen.bounds;
     NSInteger screenWidth = (NSInteger)screenBounds.size.width;

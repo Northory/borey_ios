@@ -236,7 +236,7 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
                         }
                     } else {
                         [Logs i:@"响应成功，且无返回数据"];
-                        callback(@{}, nil);
+                        callback(nil, nil);
                     }
                 } else {
                     [Logs e:@"请求失败，code: %d, msg: ", httpResponse.statusCode, httpResponse.description];
