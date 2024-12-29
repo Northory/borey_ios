@@ -2,10 +2,10 @@ Pod::Spec.new do |spec|
 
   spec.name         = "BoreyAdSDK"
   spec.version      = "0.0.7"
-  spec.license      = { :type => 'MIT', :file => 'LICENSE' }
+  spec.license      = { :type => 'MIT'}
   spec.summary      = "BoreyAdSDK"
   spec.description  = "BoreyAdSDK - 北风广告库"
-  spec.author       = { "Northory" => "northwind@tsar.freeqiye.com" }
+  spec.author       = { "Borey" => "northwind@tsar.freeqiye.com" }
   spec.homepage     = "https://github.com/Northory/borey_ios.git"
   spec.source       = { :git => "https://github.com/Northory/borey_ios.git", :tag => spec.version }
   spec.requires_arc = true

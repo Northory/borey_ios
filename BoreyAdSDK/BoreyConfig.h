@@ -14,11 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString* mediaId;
 @property(nonatomic, assign) BOOL debug;
 @property(nonatomic, copy) NSString* idfa;
-@property(nonatomic, copy) NSString* paid;
+@property(nonatomic, copy) NSDictionary *params;
 
 - (NSString *) getMediaId;
 - (NSString *) getIdfa;
-- (NSString *) getPaid;
 
 @end
 

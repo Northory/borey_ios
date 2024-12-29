@@ -17,14 +17,6 @@
     }
 }
 
-- (NSString *)getPaid {
-    if(_paid) {
-        return _paid;
-    } else {
-        return @"";
-    }
-}
-
 - (NSString *)getMediaId {
     if (_mediaId) {
         return _mediaId;
