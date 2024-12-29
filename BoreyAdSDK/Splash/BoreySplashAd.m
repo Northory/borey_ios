@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "ErrorHelper.h"
 #import "Api.h"
+#import <UIKit/UIKit.h>
 
 @interface BoreySplashAd () <CustomWebViewDelegate>
 
@@ -73,9 +74,11 @@
 
 - (void)onPageFinished {
     if (_webview && _model) {
+        CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
         NSDictionary *initData = @{
             @"img_url": [_model getImg],
-            @"time_out_second": @5
+            @"time_out_second": @5,
+            @"status_bar_height": @(statusBarHeight)
         };
         [_webview callWebMethod: @"init" : initData];
     }
@@ -134,6 +137,9 @@
 - (void)doRelease {
     if (_listener) {
         _listener = nil;
+    }
+    if (_webview) {
+        [_webview removeFromSuperview];
     }
 }
 

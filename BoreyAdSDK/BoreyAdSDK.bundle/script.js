@@ -4,11 +4,18 @@ function init(params) {
 
     platform = params.platform
     const timeOutSecond = params.time_out_second
+    const statusBarHeight = params.status_bar_height
     let url = params.img_url
     let count = timeOutSecond
     let contentBg = document.getElementById('content-bg');
     let closeBtn = document.getElementById('close-btn');
+    let container = document.getElementById('container');
     let img = document.getElementById('img')
+    
+    if (statusBarHeight) {
+        closeBtn.style.top = statusBarHeight + 'px'
+    }
+    
     img.addEventListener('load', () => {
         let opacity = 0
         let timer = setInterval(() => {
@@ -32,11 +39,11 @@ function init(params) {
         }
     }, 1000)
 
-    contentBg.addEventListener('touchstart', (e) => {
+    container.addEventListener('touchstart', (e) => {
         startY = e.touches[0].clientY;
     });
 
-    contentBg.addEventListener('touchend', (e) => {
+    container.addEventListener('touchend', (e) => {
         const endY = e.changedTouches[0].clientY;
         const deltaY = endY - startY;
         if (deltaY < 0) {

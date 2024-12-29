@@ -33,7 +33,7 @@ html {
     height: 30%;
     position: absolute;
     bottom: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+    background: linear-gradient(180deg, rgba(118, 118, 118, 0) 0%, rgba(50, 50, 50, 0.7) 100%);
     justify-content: center;
     align-items: center;
     display: flex;
@@ -76,12 +76,15 @@ html {
 
 #ad-label {
     position: absolute;
-    top: 0;
-    left: 0;
+    bottom: 20px;
+    left: 20px;
+    border-radius: 4px;
+    text-align: center;
+    width: 25px;
     color: white;
     font-size: 9px;
     padding: 2px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(37, 37, 37, 0.7);
 }
 
 
