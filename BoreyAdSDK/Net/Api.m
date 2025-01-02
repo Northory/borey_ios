@@ -63,7 +63,7 @@ NSString *const BASE_URL = @"https://bid-adx.lanjingads.com/main?media=";
             NSString *encodePrice = [NSString stringWithFormat:@"%ld", price];
             NSString *desc = [self getReportDesc: reportType];
             NSString *adName = [BoreyAd getAdTypeName:adType];
-            NSString *realUrl = [url stringByReplacingOccurrencesOfString:@"{AUCTION_PRICE}" withString: encodePrice];
+            NSString *realUrl = [url stringByReplacingOccurrencesOfString:@"${AUCTION_PRICE}" withString: encodePrice];
             [self doRequest:@"GET" :realUrl : nil :^(NSDictionary * response, NSError * error) {
                 if (error) {
                     [Logs e: @"%@ 的 %@ 上报失败: %@", adName, desc, realUrl];

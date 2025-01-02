@@ -16,17 +16,20 @@ function init(params) {
         closeBtn.style.top = statusBarHeight + 'px'
     }
     
-    img.addEventListener('load', () => {
-        let opacity = 0
-        let timer = setInterval(() => {
-            opacity += 0.07
-            img.style.opacity = opacity >= 1 ? 1 : opacity
-            if (opacity >= 1) {
-                clearInterval(timer)
-            }
-        }, 20)
-    })
+    closeBtn.style.visibility = "visible"
+    
+//    img.addEventListener('load', () => {
+//        let opacity = 0
+//        let timer = setInterval(() => {
+//            opacity += 0.07
+//            img.style.opacity = opacity >= 1 ? 1 : opacity
+//            if (opacity >= 1) {
+//                clearInterval(timer)
+//            }
+//        }, 20)
+//    })
     img.src = url
+    
     closeBtn.innerText = '跳过' + count + 's'
     let timeoutTimer = setInterval(() => {
         count--
