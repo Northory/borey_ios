@@ -59,6 +59,8 @@
     }
     
     NSURL *url = [NSURL fileURLWithPath:htmlPath];
+    _webview.backgroundColor = [UIColor clearColor];
+    [_webview setOpaque:NO];
     [_webview loadRequest:[NSURLRequest requestWithURL:url]];
 
     // 将webView添加到视图中
