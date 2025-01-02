@@ -86,18 +86,15 @@
     if (_webViewDelegate) {
         [_webViewDelegate onPageFinished];
     }
-    NSString *userAgent = [PreferenceHelper.sharedInstance getStr: PerfKeyUserAgent];
-    if (!userAgent || [userAgent length] <= 0) {
-        [self evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id result, NSError *error) {
-            if (result && [result isKindOfClass: [NSString class]]) {
-                NSString *agent = (NSString *)result;
-                [Logs i: @"User Agent: %@", agent];
-                [PreferenceHelper.sharedInstance saveStr:PerfKeyUserAgent :agent];
-            } else {
-                [Logs e: @"User Agent 获取失败: %@", error];
-            }
-        }];
-    }
+    [self evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id result, NSError *error) {
+        if (result && [result isKindOfClass: [NSString class]]) {
+            NSString *agent = (NSString *)result;
+            [Logs i: @"User Agent: %@", agent];
+            [PreferenceHelper.sharedInstance saveStr:PerfKeyUserAgent :agent];
+        } else {
+            [Logs e: @"User Agent 获取失败: %@", error];
+        }
+    }];
     
 }
 
