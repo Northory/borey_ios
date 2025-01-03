@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "BoreyAdSDK"
-  spec.version      = "1.0.6"
+  spec.version      = "1.0.7"
   spec.license      = { :type => 'MIT'}
   spec.summary      = "BoreyAdSDK"
   spec.description  = "BoreyAdSDK - 北风广告库"
@@ -16,6 +16,7 @@ Pod::Spec.new do |spec|
   spec.source_files  = "Products/BoreyAdSDK.framework/**/*.{h,m,swift}"
   spec.public_header_files = 'Products/BoreyAdSDK.framework/Headers/BoreyAdSDK.h'
   spec.frameworks = 'UIKit', 'Foundation', 'Network', 'WebKit'
-  spec.resources = "BoreyAdSDK/BoreyAdSDK.bundle"
+  spec.resources = "Products/BoreyAdSDK.framework/BoreyAdSDK.bundle"
+  spec.preserve_paths = 'Products/BoreyAdSDK.framework/Info.plist'
 
 end
