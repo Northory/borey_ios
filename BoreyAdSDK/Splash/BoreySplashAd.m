@@ -96,12 +96,34 @@
         NSArray<NSString *> *dpTrackers = [_model getDpTrackers];
         NSArray<NSString *> *clickTrackers = [_model getClickTrackers];
         [Api report: clickTrackers : price : Click : Splash];
+        NSString *ulk = [_model getUlk];
         NSString *deeplink = [_model getDeeplink];
+        NSString *ldp = [_model getldp];
+        NSURL *finalUrl;
+        NSURL *ulkURL;
+        NSURL *dpURL;
+        NSURL *ldpURL;
+        if (ulk && ![ulk isEqualToString: @""]) {
+            ulkURL = [NSURL URLWithString: ulk];
+        }
+        if (deeplink && ![deeplink isEqualToString: @""]) {
+            dpURL = [NSURL URLWithString: deeplink];
+        }
+        if (ldp && ![ldp isEqualToString: @""]) {
+            ldpURL = [NSURL URLWithString: ldp];
+        }
+        if ([[UIApplication sharedApplication] canOpenURL:ulkURL]) {
+            finalUrl = ulkURL;
+        } else if ([[UIApplication sharedApplication] canOpenURL:dpURL]) {
+            finalUrl = dpURL;
+        } else if ([[UIApplication sharedApplication] canOpenURL:ldpURL]) {
+            finalUrl = ldpURL;
+        }
+        [Logs i: @"ulk: %@", ulk];
         [Logs i: @"deeplink: %@", deeplink];
-        NSURL *url = [NSURL URLWithString:deeplink];
-        if ([[UIApplication sharedApplication] canOpenURL:url]) {
-            [Logs i: @"可以跳转"];
-            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+        [Logs i: @"ldp: %@", ldp];
+        if (finalUrl) {
+            [[UIApplication sharedApplication] openURL:finalUrl options:@{} completionHandler:^(BOOL success) {
                 if (success) {
                     [Logs i: @"跳转成功"];
                     [Api report: dpTrackers : price : Dp : Splash];

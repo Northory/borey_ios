@@ -135,4 +135,20 @@
     return [NSString stringWithFormat:@"price: %ld, title: %@, desc: %@, deeplink: %@, imags: %@, imp: %@, click: %@, dp: %@", price, title, desc, deeplink, imgUrl, imps, clicks, dps];
 }
 
+- (NSString *)getldp {
+    Bid * bid = [self getBid];
+    if (bid && bid.ldp){
+        return bid.ldp;
+    }
+    return @"";
+}
+
+- (NSString *)getUlk {
+    Bid * bid = [self getBid];
+    if (bid && bid.ulk_scheme){
+        return bid.ulk_scheme;
+    }
+    return @"";
+}
+
 @end

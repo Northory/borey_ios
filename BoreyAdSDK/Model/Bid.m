@@ -16,6 +16,8 @@
         _desc = dictionary[@"desc"];
         _deeplink = dictionary[@"deeplink"];
         _title = dictionary[@"title"];
+        _ldp = dictionary[@"ldp"];
+        _ulk_scheme = dictionary[@"ulk_scheme"];
         NSNumber *priceNumber = dictionary[@"price"];
         _price = [priceNumber longValue];
         
