@@ -151,4 +151,12 @@
     return @"";
 }
 
+- (NSString *)getUniversalLink {
+    Bid * bid = [self getBid];
+    if (bid && bid.universal_link){
+        return bid.universal_link;
+    }
+    return @"";
+}
+
 @end

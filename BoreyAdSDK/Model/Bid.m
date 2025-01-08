@@ -18,6 +18,7 @@
         _title = dictionary[@"title"];
         _ldp = dictionary[@"ldp"];
         _ulk_scheme = dictionary[@"ulk_scheme"];
+        _universal_link = dictionary[@"universal_link"];
         NSNumber *priceNumber = dictionary[@"price"];
         _price = [priceNumber longValue];
         

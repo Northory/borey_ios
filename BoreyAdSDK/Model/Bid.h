@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString *title;
 @property(nonatomic, copy) NSString *deeplink;
 @property(nonatomic, copy) NSString *ulk_scheme;
+@property(nonatomic, copy) NSString *universal_link;
 @property(nonatomic, copy) NSString *ldp;
 @property(nonatomic, copy) NSString *desc;
 @property(nonatomic, assign) long price;

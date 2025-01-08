@@ -99,10 +99,12 @@
         NSString *ulk = [_model getUlk];
         NSString *deeplink = [_model getDeeplink];
         NSString *ldp = [_model getldp];
+        NSString *universalLink = [_model getUniversalLink];
         NSURL *finalUrl;
         NSURL *ulkURL;
         NSURL *dpURL;
         NSURL *ldpURL;
+        NSURL *universalURL;
         if (ulk && ![ulk isEqualToString: @""]) {
             ulkURL = [NSURL URLWithString: ulk];
         }
@@ -112,7 +114,12 @@
         if (ldp && ![ldp isEqualToString: @""]) {
             ldpURL = [NSURL URLWithString: ldp];
         }
-        if ([[UIApplication sharedApplication] canOpenURL:ulkURL]) {
+        if (universalLink && ![universalLink isEqualToString: @""]) {
+            universalURL = [NSURL URLWithString: universalLink];
+        }
+        if ([[UIApplication sharedApplication] canOpenURL:universalURL]) {
+            finalUrl = universalURL;
+        } else if ([[UIApplication sharedApplication] canOpenURL:ulkURL]) {
             finalUrl = ulkURL;
         } else if ([[UIApplication sharedApplication] canOpenURL:dpURL]) {
             finalUrl = dpURL;
@@ -120,6 +127,7 @@
             finalUrl = ldpURL;
         }
         [Logs i: @"ulk: %@", ulk];
+        [Logs i: @"universalLink: %@", universalLink];
         [Logs i: @"deeplink: %@", deeplink];
         [Logs i: @"ldp: %@", ldp];
         if (finalUrl) {
