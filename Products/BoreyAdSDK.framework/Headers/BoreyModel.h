@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(long) getPrice;
 
 -(NSString *) getDeeplink;
+-(NSString *) getUlk;
+-(NSString *) getldp;
+-(NSString *) getUniversalLink;
 
 -(NSString *) getTitle;
 
