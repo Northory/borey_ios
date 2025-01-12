@@ -152,6 +152,7 @@
         [_listener onClick];
         [_listener onAdClosed];
     }
+    [self doRelease];
 }
 
 - (void)onTimeReached {
@@ -159,6 +160,7 @@
     if (_listener) {
         [_listener onAdClosed];
     }
+    [self doRelease];
 }
 
 - (void)onClickCloseBtn {
@@ -166,6 +168,7 @@
     if (_listener) {
         [_listener onAdClosed];
     }
+    [self doRelease];
 }
 
 - (void)doRelease {
