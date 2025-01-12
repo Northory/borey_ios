@@ -87,10 +87,8 @@
 }
 
 - (void)onClickAd {
-    if (_webview) {
-        [_webview removeFromSuperview];
-    }
     [Logs i: @"Splash onClick"];
+    
     if (_model) {
         long price = [_model getPrice];
         NSArray<NSString *> *dpTrackers = [_model getDpTrackers];
@@ -131,36 +129,40 @@
         [Logs i: @"deeplink: %@", deeplink];
         [Logs i: @"ldp: %@", ldp];
         if (finalUrl) {
+            __weak typeof(self) weakSelf = self;
             [[UIApplication sharedApplication] openURL:finalUrl options:@{} completionHandler:^(BOOL success) {
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                [strongSelf clickAd];
                 if (success) {
                     [Logs i: @"跳转成功"];
                     [Api report: dpTrackers : price : Dp : Splash];
                 }
             }];
         } else {
+            [self clickAd];
             [Logs i: @"无法跳转"];
         }
+    } else {
+        [self clickAd];
     }
+}
+
+- (void) clickAd {
     if (_listener) {
         [_listener onClick];
+        [_listener onAdClosed];
     }
 }
 
 - (void)onTimeReached {
-    if(_webview) {
-        [_webview removeFromSuperview];
-    }
-    [Logs i: @"Splash onAdClosed"];
+    [Logs i: @"Splash onTimeReached"];
     if (_listener) {
         [_listener onAdClosed];
     }
 }
 
 - (void)onClickCloseBtn {
-    if (_webview) {
-        [_webview removeFromSuperview];
-    }
-    [Logs i: @"Splash onAdClosed"];
+    [Logs i: @"Splash onClickCloseBtn"];
     if (_listener) {
         [_listener onAdClosed];
     }
