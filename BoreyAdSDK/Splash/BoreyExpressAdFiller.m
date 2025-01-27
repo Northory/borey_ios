@@ -18,7 +18,16 @@
 
 @implementation BoreyExpressAdFiller
 
-- (void)fill:(NSString *)tagId :(long)bidFloor :(CGFloat)width :(CGFloat)height {
+- (instancetype)initWithAdSize:(CGFloat)width :(CGFloat)height {
+    self = [super init];
+    if (self) {
+        self.expressWidth = width;
+        self.expressHeight = height;
+    }
+    return self;
+}
+
+- (void)fill:(NSString *)tagId :(long)bidFloor {
     BOOL sdkInited = [BoreyAdSDK.sharedInstance initialized];
     if(!sdkInited) {
         if (_listener) {
@@ -29,7 +38,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [Api fetchAdInfo:Splash :width :height :tagId :bidFloor :^(BoreyModel * boreyModel, NSError * error) {
+    [Api fetchAdInfo:Splash :self.expressWidth :self.expressHeight :tagId :bidFloor :^(BoreyModel * boreyModel, NSError * error) {
         
         __strong typeof(weakSelf) strongSelf = weakSelf;
         
@@ -39,7 +48,7 @@
                     [Logs e: @"Express广告加载失败：%@", error];
                     [strongSelf.listener onBoreyExpressAdFilled: nil :error];
                 } else if(boreyModel && [boreyModel valid]) {
-                    BoreyExpressAd * expressAd = [[BoreyExpressAd alloc] initWithModelAndSize:boreyModel :width :height];
+                    BoreyExpressAd * expressAd = [[BoreyExpressAd alloc] initWithModelAndSize:boreyModel :strongSelf.expressWidth :strongSelf.expressHeight];
                     [strongSelf.listener onBoreyExpressAdFilled:expressAd :error];
                 } else {
                     NSString *errorMsg = @"Express广告加载失败：数据解析失败";

@@ -19,8 +19,12 @@
 
 @interface BoreyExpressAdFiller : NSObject
 
-@property(nonatomic, strong) id<BoreyExpressAdFillListener> listener;
+@property(nonatomic, weak) id<BoreyExpressAdFillListener> listener;
+@property(nonatomic, assign) CGFloat expressWidth;
+@property(nonatomic, assign) CGFloat expressHeight;
 
-- (void) fill: (NSString *) tagId : (long) bidFloor: (CGFloat) width : (CGFloat) height;
+- (void) fill: (NSString *) tagId : (long) bidFloor;
+
+- (instancetype) initWithAdSize:(CGFloat)width :(CGFloat)height;
 
 @end
