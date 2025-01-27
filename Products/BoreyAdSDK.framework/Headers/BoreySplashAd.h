@@ -15,13 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol BoreySplashAdListener <NSObject>
 
--(void) onClick;
+-(void) onBoreySplashAdClick;
 
--(void) onAdClosed;
+-(void) onBoreySplashAdClosed;
 
--(void) onAdDisplayed;
+-(void) onBoreySplashAdDisplayed;
 
--(void) onAdFailed: (NSError *) error;
+-(void) onBoreySplashAdShowFailed: (NSError *) error;
 
 @end
 

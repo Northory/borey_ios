@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol BoreySplashAdFillListener <NSObject>
 
--(void) onSplashAdFilled: (nullable BoreySplashAd *) splashAd : (NSError *) error;
+-(void) onBoreySplashAdFilled: (nullable BoreySplashAd *) splashAd : (NSError *) error;
 
 @end
 
