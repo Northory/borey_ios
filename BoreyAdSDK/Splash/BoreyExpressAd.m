@@ -1,99 +1,74 @@
 //
-//  NSObject+BoreySplashAd.m
+//  BoreyExpressAd.m
 //  BoreyAdSDK
 //
-//  Created by Buer on 2024/12/2.
+//  Created by Buer on 2025/1/26.
 //
 
-#import "BoreySplashAd.h"
+#import <Foundation/Foundation.h>
+#import "BoreyExpressAd.h"
+#import <UIKit/UIKit.h>
 #import "CustomWebView.h"
-#import "BoreyModel.h"
 #import "Logs.h"
 #import "Constants.h"
 #import "ErrorHelper.h"
 #import "Api.h"
-#import <UIKit/UIKit.h>
 
-@interface BoreySplashAd () <CustomWebViewDelegate>
+@interface BoreyExpressAd () <CustomWebViewDelegate>
 
 @property(nonatomic, strong) CustomWebView * webview;
-@property(nonatomic, strong) BoreyModel * model;
 
--(instancetype) initWithModel: (BoreyModel *) model;
 
 @end
 
-@implementation BoreySplashAd
+@implementation BoreyExpressAd
 
-- (instancetype)initWithModel:(BoreyModel *)model {
-    self = [super init];
-    if (self) {
-        self.model = model;
-    }
-    return self;
-}
-
-- (void)showInWindow:(UIWindow *)window {
+- (UIView *)expressAdViewWithViewController:(UIViewController *)viewController {
     
-    if (_webview) {
-        [Logs i: @"广告已展示过"];
-        if (_listener) {
-            [_listener onBoreySplashAdShowFailed: [ErrorHelper create: SplashShowError :@"广告已展示过"]];
-        }
-        return;
-    }
+    CGRect rect = CGRectMake(0,0,_mWidth,_mHeight);
     
-    _webview = [[CustomWebView alloc] create:window.bounds :nil];
+    _webview = [[CustomWebView alloc] create: rect :nil];
     _webview.webViewDelegate = self;
+    
     // 获取HTML文件的路径
     NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"BoreyAdSDK" ofType:@"bundle"]];
-    NSString *htmlPath = [bundle pathForResource:@"splash/index" ofType:@"html"];
+    NSString *htmlPath = [bundle pathForResource:@"express/index" ofType:@"html"];
 
     // 检查文件是否存在
     if (!htmlPath) {
-        [Logs i: @"Splash onAdFailed: 广告样式缺失"];
+        [Logs i: @"Express onAdFailed: 广告样式缺失"];
         if (_listener) {
-            [_listener onBoreySplashAdShowFailed: [ErrorHelper create: SplashShowError :@"广告样式缺失"]];
+            [_listener onBoreyExpressAdShowFailed: [ErrorHelper create: ExpressShowError :@"广告样式缺失"]];
         }
-        return;
+        return nil;
     }
     
     NSURL *url = [NSURL fileURLWithPath:htmlPath];
     _webview.backgroundColor = [UIColor clearColor];
     [_webview setOpaque:NO];
     [_webview loadRequest:[NSURLRequest requestWithURL:url]];
-
-    // 将webView添加到视图中
-    [window addSubview:_webview];
-    [Logs i: @"Splash onAdDisplayed"];
-    if (_model) {
-        [Api report: [_model getImpTrackers] : [_model getPrice] : Imp : Splash];
-    }
-    if (_listener) {
-        [_listener onBoreySplashAdDisplayed];
-    }
+    
+    return _webview;
 }
 
-- (void)onPageFinished {
-    if (_webview && _model) {
-        CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-        NSDictionary *initData = @{
-            @"img_url": [_model getImg],
-            @"time_out_second": @5,
-            @"status_bar_height": @(statusBarHeight)
-        };
-        [_webview callWebMethod: @"init" : initData];
+- (instancetype)initWithModelAndSize:(BoreyModel *)model :(CGFloat)width :(CGFloat)height {
+    self = [super init];
+    if (self) {
+        self.model = model;
+        self.mWidth = width;
+        self.mHeight = height;
     }
+    return self;
 }
 
-- (void)onClickAd {
-    [Logs i: @"Splash onClick"];
+- (void) onClickAd {
+    [Logs i: @"Express onClick"];
     
     if (_model) {
         long price = [_model getPrice];
         NSArray<NSString *> *dpTrackers = [_model getDpTrackers];
         NSArray<NSString *> *clickTrackers = [_model getClickTrackers];
-        [Api report: clickTrackers : price : Click : Splash];
+        [Api report: clickTrackers : price : Click : Express];
         NSString *ulk = [_model getUlk];
         NSString *deeplink = [_model getDeeplink];
         NSString *ldp = [_model getldp];
@@ -135,7 +110,7 @@
                 [strongSelf clickAd];
                 if (success) {
                     [Logs i: @"跳转成功"];
-                    [Api report: dpTrackers : price : Dp : Splash];
+                    [Api report: dpTrackers : price : Dp : Express];
                 }
             }];
         } else {
@@ -147,29 +122,47 @@
     }
 }
 
-- (void) clickAd {
-    if (_listener) {
-        [_listener onBoreySplashAdClick];
-        [_listener onBoreySplashAdClosed];
+- (void)onPageFinished {
+    if (_webview && _model) {
+        NSDictionary *initData = @{
+            @"img_url": [_model getImg],
+            @"title":[_model getTitle],
+            @"expect_height_dp": @(_mHeight)
+        };
+        [_webview callWebMethod: @"init" : initData];
     }
-    [self doRelease];
 }
 
-- (void)onTimeReached {
-    [Logs i: @"Splash onTimeReached"];
-    if (_listener) {
-        [_listener onBoreySplashAdClosed];
+- (void)webViewWillAddToSuperView {
+    [Logs i: @"Express onAdDisplayed"];
+    if (_model) {
+        [Api report: [_model getImpTrackers] : [_model getPrice] : Imp : Express];
     }
-    [self doRelease];
+    if (_listener) {
+        [_listener onBoreyExpressAdDisplayed];
+    }
 }
 
 - (void)onClickCloseBtn {
-    [Logs i: @"Splash onClickCloseBtn"];
     if (_listener) {
-        [_listener onBoreySplashAdClosed];
+        [_listener onBoreyExpressAdClosed];
     }
     [self doRelease];
 }
+
+- (void)onLoadHtmlError:(NSError *)error {
+    if (_listener) {
+        [_listener onBoreyExpressAdShowFailed: error];
+    }
+    [self doRelease];
+}
+
+- (void)clickAd {
+    if (_listener) {
+        [_listener onBoreyExpressAdClick];
+    }
+}
+
 
 - (void)doRelease {
     if (_listener) {
@@ -180,11 +173,5 @@
     }
 }
 
-- (long)getEcpm {
-    if (_model) {
-        return [_model getPrice];
-    }
-    return 0;
-}
 
 @end

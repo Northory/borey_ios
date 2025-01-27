@@ -26,6 +26,8 @@
 @optional
 -(void) onLoadHtmlError: (NSError *) error;
 
+-(void) webViewWillAddToSuperView;
+
 @end
 
 @interface CustomWebView : WKWebView <WKNavigationDelegate, WKScriptMessageHandler>

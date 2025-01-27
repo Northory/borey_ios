@@ -27,7 +27,7 @@
     BOOL sdkInited = [BoreyAdSDK.sharedInstance initialized];
     if(!sdkInited) {
         if (_listener) {
-            [_listener onSplashAdFilled:nil :[ErrorHelper create:1001 : @"Borey SDK未初始化"]];
+            [_listener onBoreySplashAdFilled:nil :[ErrorHelper create:1001 : @"Borey SDK未初始化"]];
         }
         return;
     }
@@ -45,13 +45,13 @@
             if (strongSelf.listener) {
                 if (error) {
                     [Logs e: @"Splash广告加载失败：%@", error];
-                    [strongSelf.listener onSplashAdFilled: nil :error];
+                    [strongSelf.listener onBoreySplashAdFilled: nil :error];
                 } else if(boreyModel && [boreyModel valid]) {
                     BoreySplashAd * splashAd = [[BoreySplashAd alloc] initWithModel: boreyModel];
-                    [strongSelf.listener onSplashAdFilled:splashAd :error];
+                    [strongSelf.listener onBoreySplashAdFilled:splashAd :error];
                 } else {
                     NSString *errorMsg = @"Splash广告加载失败：数据解析失败";
-                    [strongSelf.listener onSplashAdFilled: nil :[ErrorHelper create:2001 : errorMsg]];
+                    [strongSelf.listener onBoreySplashAdFilled: nil :[ErrorHelper create:2001 : errorMsg]];
                     [Logs e: errorMsg];
                 }
             }

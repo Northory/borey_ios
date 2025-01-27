@@ -15,6 +15,7 @@ NSString *const PerfKeyUserIDFA = @"perf_key_user_idfa";
 NSString *const PerfKeyUserAgent = @"perf_key_user_agent";
 
 NSInteger const SplashShowError = 2001;
+NSInteger const ExpressShowError = 3001;
 
 @implementation Constants
 

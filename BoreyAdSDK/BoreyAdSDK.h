@@ -20,6 +20,8 @@ FOUNDATION_EXPORT const unsigned char BoreyAdSDKVersionString[];
 #import <BoreyAdSDK/ErrorHelper.h>
 #import <BoreyAdSDK/BoreyAd.h>
 #import <BoreyAdSDK/BoreyModel.h>
+#import <BoreyAdSDK/BoreyExpressAd.h>
+#import <BoreyAdSDK/BoreyExpressAdFiller.h>
 
 
 

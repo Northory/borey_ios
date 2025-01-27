@@ -43,6 +43,10 @@
 		1B1592C62D059C5500F0D065 /* PreferenceHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B1592C52D059C5500F0D065 /* PreferenceHelper.h */; };
 		1B1592C82D05A0B900F0D065 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B1592C72D05A0B900F0D065 /* Constants.h */; };
 		1B1592CA2D05A14000F0D065 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1592C92D05A14000F0D065 /* Constants.m */; };
+		1B397C562D466FBF00A09215 /* BoreyExpressAdFiller.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B397C552D466FBF00A09215 /* BoreyExpressAdFiller.m */; };
+		1B397C582D466FE800A09215 /* BoreyExpressAdFiller.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B397C572D466FE800A09215 /* BoreyExpressAdFiller.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B397C5A2D46703B00A09215 /* BoreyExpressAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B397C592D46703B00A09215 /* BoreyExpressAd.m */; };
+		1B397C5C2D46704D00A09215 /* BoreyExpressAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B397C5B2D46704D00A09215 /* BoreyExpressAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B47B9562D0DC81A0062B4EB /* CustomWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B47B9552D0DC81A0062B4EB /* CustomWebView.m */; };
 		1B47B9582D0DC8280062B4EB /* CustomWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B47B9572D0DC8280062B4EB /* CustomWebView.h */; };
 		1B47B95A2D0DCC490062B4EB /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B47B9592D0DCC490062B4EB /* WebKit.framework */; };
@@ -95,6 +99,10 @@
 		1B1592C52D059C5500F0D065 /* PreferenceHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferenceHelper.h; sourceTree = "<group>"; };
 		1B1592C72D05A0B900F0D065 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		1B1592C92D05A14000F0D065 /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		1B397C552D466FBF00A09215 /* BoreyExpressAdFiller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BoreyExpressAdFiller.m; path = BoreyAdSDK/Splash/BoreyExpressAdFiller.m; sourceTree = SOURCE_ROOT; };
+		1B397C572D466FE800A09215 /* BoreyExpressAdFiller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BoreyExpressAdFiller.h; path = BoreyAdSDK/Splash/BoreyExpressAdFiller.h; sourceTree = SOURCE_ROOT; };
+		1B397C592D46703B00A09215 /* BoreyExpressAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BoreyExpressAd.m; path = BoreyAdSDK/Splash/BoreyExpressAd.m; sourceTree = SOURCE_ROOT; };
+		1B397C5B2D46704D00A09215 /* BoreyExpressAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BoreyExpressAd.h; path = BoreyAdSDK/Splash/BoreyExpressAd.h; sourceTree = SOURCE_ROOT; };
 		1B47B9552D0DC81A0062B4EB /* CustomWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomWebView.m; sourceTree = "<group>"; };
 		1B47B9572D0DC8280062B4EB /* CustomWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomWebView.h; sourceTree = "<group>"; };
 		1B47B9592D0DCC490062B4EB /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -209,6 +217,10 @@
 		1BCEF51A2CFC461B008B4A53 /* Express */ = {
 			isa = PBXGroup;
 			children = (
+				1B397C572D466FE800A09215 /* BoreyExpressAdFiller.h */,
+				1B397C552D466FBF00A09215 /* BoreyExpressAdFiller.m */,
+				1B397C5B2D46704D00A09215 /* BoreyExpressAd.h */,
+				1B397C592D46703B00A09215 /* BoreyExpressAd.m */,
 			);
 			path = Express;
 			sourceTree = "<group>";
@@ -280,8 +292,10 @@
 				1B1592B12D040E7000F0D065 /* Image.h in Headers */,
 				1B1592B82D0454E000F0D065 /* BoreyConfig.h in Headers */,
 				1B9611582D0C70D800C8CE3F /* DeviceHelper.h in Headers */,
+				1B397C5C2D46704D00A09215 /* BoreyExpressAd.h in Headers */,
 				1BCEF51D2CFC58CE008B4A53 /* BoreyAd.h in Headers */,
 				1B1592C12D05839700F0D065 /* RandomHelper.h in Headers */,
+				1B397C582D466FE800A09215 /* BoreyExpressAdFiller.h in Headers */,
 				1B96115E2D0C738C00C8CE3F /* Md5Helper.h in Headers */,
 				1BCEF5392CFCBFF2008B4A53 /* BoreySplashAd.h in Headers */,
 				1B1592C82D05A0B900F0D065 /* Constants.h in Headers */,
@@ -387,6 +401,7 @@
 			files = (
 				1B1592AA2D040B0C00F0D065 /* SeatBid.m in Sources */,
 				1B1592B22D040E7000F0D065 /* Image.m in Sources */,
+				1B397C562D466FBF00A09215 /* BoreyExpressAdFiller.m in Sources */,
 				1B1592C22D05839700F0D065 /* RandomHelper.m in Sources */,
 				1BCEF5292CFCB378008B4A53 /* BoreyAd.m in Sources */,
 				1B1592B42D044F7400F0D065 /* BoreyAdSDK.m in Sources */,
@@ -399,6 +414,7 @@
 				1BCEF53A2CFCBFF2008B4A53 /* BoreySplashAd.m in Sources */,
 				1B47B9562D0DC81A0062B4EB /* CustomWebView.m in Sources */,
 				1B9611622D0D478700C8CE3F /* Logs.m in Sources */,
+				1B397C5A2D46703B00A09215 /* BoreyExpressAd.m in Sources */,
 				1B9611602D0C73AC00C8CE3F /* Md5Helper.m in Sources */,
 				1B1592C42D059C3C00F0D065 /* PreferenceHelper.m in Sources */,
 				1B1592BD2D04671F00F0D065 /* ErrorHelper.m in Sources */,
