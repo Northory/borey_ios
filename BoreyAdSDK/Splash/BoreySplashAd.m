@@ -103,7 +103,6 @@
         long price = [_model getPrice];
         NSArray<NSString *> *dpTrackers = [_model getDpTrackers];
         NSArray<NSString *> *clickTrackers = [_model getClickTrackers];
-        [Api report: clickTrackers : price : Click : Splash];
         NSString *ulk = [_model getUlk];
         NSString *deeplink = [_model getDeeplink];
         NSString *ldp = [_model getldp];
@@ -134,6 +133,18 @@
         } else if ([[UIApplication sharedApplication] canOpenURL:ldpURL]) {
             finalUrl = ldpURL;
         }
+        
+        NSNumber *jumpFailedReportClick;
+        BoreyConfig *boreyAdConfig = BoreyAdSDK.sharedInstance.config;
+        if (boreyAdConfig) {
+            NSDictionary *splashConfig = [boreyAdConfig getSplashParams];
+            jumpFailedReportClick = splashConfig[@"jump_failed_report_click"] ?: @YES;
+        }
+        
+        if ([jumpFailedReportClick isEqual:nil] || [jumpFailedReportClick isEqual:@(1)]) {
+            [Api report: clickTrackers : price : Click : Splash];
+        }
+        
         [Logs i: @"ulk: %@", ulk];
         [Logs i: @"universalLink: %@", universalLink];
         [Logs i: @"deeplink: %@", deeplink];
@@ -146,6 +157,9 @@
                 if (success) {
                     [Logs i: @"跳转成功"];
                     [Api report: dpTrackers : price : Dp : Splash];
+                    if ([jumpFailedReportClick isEqual:@(0)]) {
+                        [Api report: clickTrackers : price : Click : Splash];
+                    }
                 }
             }];
         } else {

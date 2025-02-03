@@ -6,7 +6,12 @@ function init(params) {
     const config = params.config
     const statusBarHeight = params.status_bar_height
     const timeOutSecond = config?.skip_time_seconds || 5
-    const clickAreaRatio = config?.click_area_ratio || 0.3
+    let clickAreaRatio = config?.click_area_ratio || 0.3
+    if (clickAreaRatio >= 1) {
+        clickAreaRatio = 1
+    } else if (clickAreaRatio <= 0) {
+        clickAreaRatio = 0.3
+    }
     let url = params.img_url
     let count = timeOutSecond
     let clickArea = document.getElementById('click-area');
