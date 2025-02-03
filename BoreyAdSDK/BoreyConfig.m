@@ -25,4 +25,14 @@
     }
 }
 
+-(NSDictionary *) getSplashParams {
+    if (_params) {
+        NSDictionary * splashConfig = _params[@"splash"];
+        if (splashConfig) {
+            return splashConfig;
+        }
+    }
+    return @{};
+}
+
 @end

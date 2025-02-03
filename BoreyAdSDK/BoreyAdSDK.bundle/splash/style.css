@@ -88,6 +88,13 @@ html {
     background: rgba(37, 37, 37, 0.7);
 }
 
+#click-area {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: aqua;
+}
+
 
 /*上移并消失动画*/
 @keyframes fade-out {

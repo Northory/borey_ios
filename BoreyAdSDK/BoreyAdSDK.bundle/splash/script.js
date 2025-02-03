@@ -3,31 +3,23 @@ let platform = ''
 function init(params) {
 
     platform = params.platform
-    const timeOutSecond = params.time_out_second
+    const config = params.config
     const statusBarHeight = params.status_bar_height
+    const timeOutSecond = config?.skip_time_seconds || 5
+    const clickAreaRatio = config?.click_area_ratio || 0.3
     let url = params.img_url
     let count = timeOutSecond
-    let contentBg = document.getElementById('content-bg');
+    let clickArea = document.getElementById('click-area');
     let closeBtn = document.getElementById('close-btn');
-    let container = document.getElementById('container');
     let img = document.getElementById('img')
     
     if (statusBarHeight) {
         closeBtn.style.top = statusBarHeight + 'px'
     }
     
+    clickArea.style.height = clickAreaRatio * 100 + '%'
     closeBtn.style.visibility = "visible"
     
-//    img.addEventListener('load', () => {
-//        let opacity = 0
-//        let timer = setInterval(() => {
-//            opacity += 0.07
-//            img.style.opacity = opacity >= 1 ? 1 : opacity
-//            if (opacity >= 1) {
-//                clearInterval(timer)
-//            }
-//        }, 20)
-//    })
     img.src = url
     
     closeBtn.innerText = '跳过' + count + 's'
@@ -42,11 +34,11 @@ function init(params) {
         }
     }, 1000)
 
-    container.addEventListener('touchstart', (e) => {
+    clickArea.addEventListener('touchstart', (e) => {
         startY = e.touches[0].clientY;
     });
 
-    container.addEventListener('touchend', (e) => {
+    clickArea.addEventListener('touchend', (e) => {
         const endY = e.changedTouches[0].clientY;
         const deltaY = endY - startY;
         if (deltaY < 0) {

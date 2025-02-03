@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *) getMediaId;
 - (NSString *) getIdfa;
+- (NSDictionary *) getSplashParams;
 
 @end
 
