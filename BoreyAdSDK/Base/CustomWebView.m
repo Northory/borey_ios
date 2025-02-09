@@ -105,5 +105,12 @@
     }
 }
 
+- (void)willMoveToSuperview:(UIView *)newSuperview {
+    if (_webViewDelegate && newSuperview) {
+        [Logs i: @"webview willMoveToSuperview, %@", newSuperview];
+        [_webViewDelegate webViewWillAddToSuperView];
+    }
+}
+
 
 @end

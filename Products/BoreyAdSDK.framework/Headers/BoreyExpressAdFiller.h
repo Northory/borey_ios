@@ -23,8 +23,10 @@
 @property(nonatomic, assign) CGFloat expressWidth;
 @property(nonatomic, assign) CGFloat expressHeight;
 
-- (void) fill: (NSString *) tagId : (long) bidFloor;
+-(instancetype) initWithAdSize:(CGFloat)width :(CGFloat)height;
 
-- (instancetype) initWithAdSize:(CGFloat)width :(CGFloat)height;
+-(void) fill: (NSString *) tagId : (long) bidFloor;
+
+
 
 @end

@@ -139,10 +139,12 @@
         if (boreyAdConfig) {
             NSDictionary *splashConfig = [boreyAdConfig getSplashParams];
             jumpFailedReportClick = splashConfig[@"jump_failed_report_click"] ?: @YES;
+            [Logs i:@"jump_failed_report_click value: %@", jumpFailedReportClick];
         }
         
         if ([jumpFailedReportClick isEqual:nil] || [jumpFailedReportClick isEqual:@(1)]) {
             [Api report: clickTrackers : price : Click : Splash];
+            [Logs i:@"点击即上报"];
         }
         
         [Logs i: @"ulk: %@", ulk];
@@ -159,6 +161,7 @@
                     [Api report: dpTrackers : price : Dp : Splash];
                     if ([jumpFailedReportClick isEqual:@(0)]) {
                         [Api report: clickTrackers : price : Click : Splash];
+                        [Logs i:@"跳转成功上报"];
                     }
                 }
             }];
@@ -193,6 +196,10 @@
         [_listener onBoreySplashAdClosed];
     }
     [self doRelease];
+}
+
+- (void)webViewWillAddToSuperView {
+    [Logs i: @"Splash webViewWillAddToSuperView"];
 }
 
 - (void)doRelease {
