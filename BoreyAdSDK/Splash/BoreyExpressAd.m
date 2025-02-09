@@ -173,5 +173,11 @@
     }
 }
 
+- (long)getEcpm {
+    if (_model) {
+        return [_model getPrice];
+    }
+    return 0;
+}
 
 @end
