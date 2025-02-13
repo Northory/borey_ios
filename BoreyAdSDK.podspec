@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "BoreyAdSDK"
-  spec.version      = "1.0.17"
+  spec.version      = "1.0.18"
   spec.license      = { :type => 'MIT'}
   spec.summary      = "BoreyAdSDK"
   spec.description  = "BoreyAdSDK - 北风广告库"

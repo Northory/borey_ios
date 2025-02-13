@@ -112,5 +112,12 @@
     }
 }
 
+- (void)willMoveToWindow:(UIWindow *)newWindow {
+    if (_webViewDelegate && newWindow) {
+        [Logs i: @"webview willMoveToWindow, %@", newWindow];
+        [_webViewDelegate webViewWillMoveToWindow];
+    }
+}
+
 
 @end

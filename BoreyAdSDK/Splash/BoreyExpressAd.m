@@ -134,6 +134,16 @@
 }
 
 - (void)webViewWillAddToSuperView {
+//    [Logs i: @"Express onAdDisplayed"];
+//    if (_model) {
+//        [Api report: [_model getImpTrackers] : [_model getPrice] : Imp : Express];
+//    }
+//    if (_listener) {
+//        [_listener onBoreyExpressAdDisplayed];
+//    }
+}
+
+- (void)webViewWillMoveToWindow {
     [Logs i: @"Express onAdDisplayed"];
     if (_model) {
         [Api report: [_model getImpTrackers] : [_model getPrice] : Imp : Express];
@@ -144,6 +154,7 @@
 }
 
 - (void)onClickCloseBtn {
+    [Logs i: @"Express onClickCloseBtn"];
     if (_listener) {
         [_listener onBoreyExpressAdClosed];
     }
@@ -151,6 +162,7 @@
 }
 
 - (void)onLoadHtmlError:(NSError *)error {
+    [Logs i: @"Express onLoadHtmlError"];
     if (_listener) {
         [_listener onBoreyExpressAdShowFailed: error];
     }
@@ -158,6 +170,7 @@
 }
 
 - (void)clickAd {
+    [Logs i: @"Express clickAd"];
     if (_listener) {
         [_listener onBoreyExpressAdClick];
     }

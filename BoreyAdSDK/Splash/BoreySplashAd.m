@@ -202,6 +202,10 @@
     [Logs i: @"Splash webViewWillAddToSuperView"];
 }
 
+- (void)webViewWillMoveToWindow {
+    [Logs i: @"Splash webViewWillMoveToWindow"];
+}
+
 - (void)doRelease {
     if (_listener) {
         _listener = nil;

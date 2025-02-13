@@ -28,6 +28,8 @@
 
 -(void) webViewWillAddToSuperView;
 
+-(void) webViewWillMoveToWindow;
+
 @end
 
 @interface CustomWebView : WKWebView <WKNavigationDelegate, WKScriptMessageHandler>
