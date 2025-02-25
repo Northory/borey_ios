@@ -14,6 +14,7 @@ extern NSString *const PerfKeyUserAgent;
 
 extern NSInteger const SplashShowError;
 extern NSInteger const ExpressShowError;
+extern NSInteger const BannerShowError;
 
 @interface Constants : NSObject
 

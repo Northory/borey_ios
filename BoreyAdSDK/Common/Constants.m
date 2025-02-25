@@ -16,6 +16,7 @@ NSString *const PerfKeyUserAgent = @"perf_key_user_agent";
 
 NSInteger const SplashShowError = 2001;
 NSInteger const ExpressShowError = 3001;
+NSInteger const BannerShowError = 4001;
 
 @implementation Constants
 

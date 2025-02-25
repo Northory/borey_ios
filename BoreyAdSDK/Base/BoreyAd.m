@@ -16,6 +16,8 @@
             return @"5";
         case Express:
             return @"2";
+        case Banner:
+            return @"2";
     }
 }
 
@@ -25,6 +27,8 @@
             return @"Splash";
         case Express:
             return @"Express";
+        case Banner:
+            return @"Banner";
     }
 }
 

@@ -89,6 +89,15 @@
     return @"";
 }
 
+
+- (NSString *) getBrandLogo {
+    Bid * bid = [self getBid];
+    if (bid && bid.brandLogo){
+        return bid.brandLogo;
+    }
+    return @"";
+}
+
 -(NSString *)getDeeplink {
     Bid * bid = [self getBid];
     if (bid && bid.deeplink){

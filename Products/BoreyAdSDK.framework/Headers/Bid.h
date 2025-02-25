@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString *universal_link;
 @property(nonatomic, copy) NSString *ldp;
 @property(nonatomic, copy) NSString *desc;
+@property(nonatomic, copy) NSString *brandLogo;
 @property(nonatomic, assign) long price;
 
 - (instancetype)initWithDict:(NSDictionary *)dictionary;

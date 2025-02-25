@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString *) getUlk;
 -(NSString *) getldp;
 -(NSString *) getUniversalLink;
+-(NSString *) getDesc;
+-(NSString *) getBrandLogo;
 
 -(NSString *) getTitle;
 

@@ -134,13 +134,7 @@
 }
 
 - (void)webViewWillAddToSuperView {
-//    [Logs i: @"Express onAdDisplayed"];
-//    if (_model) {
-//        [Api report: [_model getImpTrackers] : [_model getPrice] : Imp : Express];
-//    }
-//    if (_listener) {
-//        [_listener onBoreyExpressAdDisplayed];
-//    }
+
 }
 
 - (void)webViewWillMoveToWindow {
