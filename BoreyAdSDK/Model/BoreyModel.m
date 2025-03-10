@@ -81,6 +81,14 @@
     return @"";
 }
 
+- (NSArray<Image *> *)getImages {
+    Bid * bid = [self getBid];
+    if (bid && bid.images){
+        return bid.images;
+    }
+    return nil;
+}
+
 - (NSString *)getTitle {
     Bid * bid = [self getBid];
     if (bid && bid.title){

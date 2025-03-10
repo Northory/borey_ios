@@ -10,7 +10,8 @@
 typedef NS_ENUM(NSInteger, AdType) {
     Splash = 0,
     Express,
-    Banner
+    Banner,
+    Custom
 };
 
 

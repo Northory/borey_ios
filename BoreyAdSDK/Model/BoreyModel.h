@@ -41,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(NSArray<NSString *> *) getClickTrackers;
 
+-(NSArray<Image *> *) getImages;
+
 -(Bid *) getBid;
 
 

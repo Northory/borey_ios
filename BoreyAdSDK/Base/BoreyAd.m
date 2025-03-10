@@ -18,6 +18,8 @@
             return @"2";
         case Banner:
             return @"2";
+        case Custom:
+            return @"2";
     }
 }
 
@@ -29,6 +31,8 @@
             return @"Express";
         case Banner:
             return @"Banner";
+        case Custom:
+            return @"Custom";
     }
 }
 
