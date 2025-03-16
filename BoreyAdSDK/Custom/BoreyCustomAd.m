@@ -50,7 +50,7 @@
             [_listener onBoreyCustomAdDisplayed];
         }
         if (_model) {
-            [Api report: [_model getImpTrackers] : [_model getPrice] : Dp : Custom];
+            [Api report: [_model getImpTrackers] : [_model getPrice] : Imp : Custom];
         }
     }
     
