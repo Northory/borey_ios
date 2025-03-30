@@ -18,6 +18,7 @@
 @interface BoreyCustomAd()
 
 @property(nonatomic, strong) BoreyModel * model;
+@property(nonatomic, assign) BOOL hasShown;
 
 @end
 
@@ -34,6 +35,7 @@
         self.mWidth = width;
         self.mHeight = height;
         self.info = [[CustomAdInfo alloc] initWithModel:model];
+        self.hasShown = NO;
     }
     return self;
 }
@@ -41,17 +43,15 @@
 
 - (void)registerViews:(UIView *)adView :(NSArray<UIView *> *)clickableViews :(NSArray<UIView *> *)closeViews {
     
-    if (!adView || !clickableViews || !closeViews) {
+    if (!adView || !clickableViews || !closeViews || _hasShown) {
         return;
     }
     
-    if([self isViewVisibleOnScreen:adView]) {
-        if (_listener) {
-            [_listener onBoreyCustomAdDisplayed];
-        }
-        if (_model) {
-            [Api report: [_model getImpTrackers] : [_model getPrice] : Imp : Custom];
-        }
+    if (_listener) {
+        [_listener onBoreyCustomAdDisplayed];
+    }
+    if (_model) {
+        [Api report: [_model getImpTrackers] : [_model getPrice] : Imp : Custom];
     }
     
     for(UIView * view in clickableViews) {
@@ -69,6 +69,8 @@
         tapGesture.numberOfTouchesRequired = 1; // 单指
         [view addGestureRecognizer:tapGesture];
     }
+    
+    _hasShown = YES;
 }
 
 -(void) onDislike:(UITapGestureRecognizer *)gesture {
