@@ -71,21 +71,32 @@ html {
     color: white;
     padding-top: 5px;
     padding-bottom: 4px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.4);
     visibility: hidden;
 }
 
 #ad-label {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 18px;
+    right: 18px;
     border-radius: 4px;
-    text-align: center;
-    width: 25px;
-    color: white;
-    font-size: 9px;
-    padding: 2px;
-    background: rgba(37, 37, 37, 0.7);
+    padding: 3px;
+    background: rgba(82, 82, 82, 0.5);
+}
+
+#ad-label-img {
+    width: 13px;
+    height: 13px;
+}
+
+#ad-label-text {
+    position: relative;
+    font-size: 10px;
+    color: #ffffff;
+    margin-left: 2px;
 }
 
 #click-area {

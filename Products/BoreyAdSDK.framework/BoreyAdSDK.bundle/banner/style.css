@@ -79,18 +79,28 @@ html {
 
 #ad-label {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    color: white;
-    font-size: 9px;
-    padding-left: 3px;
-    padding-right: 3px;
-    padding-bottom: 1px;
-    padding-top: 1px;
-    border-radius: 3px;
-    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 2px;
+    right: 2px;
     margin-bottom: 3px;
     margin-right: 3px;
+    border-radius: 4px;
+    padding: 3px;
+    background: rgba(82, 82, 82, 0.5);
+}
+
+#ad-label-img {
+    width: 13px;
+    height: 13px;
+}
+
+#ad-label-text {
+    position: relative;
+    font-size: 10px;
+    color: #ffffff;
+    margin-left: 2px;
 }
 
 #close-icon {

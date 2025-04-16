@@ -86,3 +86,28 @@ html {
     background: rgba(0, 0, 0, 0.5);
     visibility: hidden;
 }
+
+#ad-label {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 5px;
+    left: 5px;
+    visibility: hidden;
+    border-radius: 4px;
+    padding: 3px;
+    background: rgba(82, 82, 82, 0.5);
+}
+
+#ad-label-img {
+    width: 13px;
+    height: 13px;
+}
+
+#ad-label-text {
+    position: relative;
+    font-size: 10px;
+    color: #ffffff;
+    margin-left: 2px;
+}
