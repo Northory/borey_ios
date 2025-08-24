@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSDictionary *) getAdConfig: (AdType) adType : (NSString *) scene;
 
++ (BOOL) showInnerLog;
+
 @end
 
 NS_ASSUME_NONNULL_END

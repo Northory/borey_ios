@@ -43,4 +43,18 @@
     return @{};
 }
 
++ (BOOL)showInnerLog {
+    BoreyConfig *config = BoreyAdSDK.sharedInstance.config;
+    if (config) {
+        NSDictionary *params = [config getParams];
+        if (params) {
+            NSNumber *showInnerLog = [params objectForKey:@"show_inner_log"];
+            if (showInnerLog && [showInnerLog isKindOfClass:[NSNumber class]]) {
+                return [showInnerLog boolValue];
+            }
+        }
+    }
+    return NO;
+}
+
 @end

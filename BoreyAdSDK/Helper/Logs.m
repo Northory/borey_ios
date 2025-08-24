@@ -9,6 +9,7 @@
 #import "Logs.h"
 #import "BoreyAdSDK/BoreyAdSDK.h"
 #import "BoreyAdSDK/BoreyConfig.h"
+#import "ConfigHelper.h"
 
 NSString *const ITAG = @"BoreyI";
 NSString *const ETAG = @"BoreyE";
@@ -16,9 +17,8 @@ NSString *const ETAG = @"BoreyE";
 @implementation Logs
 
 + (void) i:(NSString *)msg, ... {
-    
-    BoreyConfig* config =  BoreyAdSDK.sharedInstance.config;
-    if (config && config.debug) {
+    BOOL showInnerLog = [ConfigHelper showInnerLog];
+    if (showInnerLog) {
         va_list args;
         va_start(args, msg);
         NSString *logString = [[NSString alloc] initWithFormat:msg arguments:args];
@@ -35,8 +35,8 @@ NSString *const ETAG = @"BoreyE";
 }
 
 + (void)dict:(NSString *)label :(NSDictionary *)dict {
-    BoreyConfig* config =  BoreyAdSDK.sharedInstance.config;
-    if (config && config.debug) {
+    BOOL showInnerLog = [ConfigHelper showInnerLog];
+    if (showInnerLog) {
         NSError *error;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];
         if (!jsonData) {
