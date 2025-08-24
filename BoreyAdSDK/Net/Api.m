@@ -16,6 +16,7 @@
 #import "Md5Helper.h"
 #import "Logs.h"
 #import <WebKit/WebKit.h>
+#import "NetworkHelper.h"
 
 
 @implementation Api
@@ -90,8 +91,8 @@ NSString *const BASE_URL = @"http://bid-adx.lanjingads.com/main?media=";
 + (NSDictionary* ) getParams: (AdType) adType : (NSString *) tagId : (NSInteger) width : (NSInteger) height : (long) bidFloor   {
     
     BoreyConfig *config = BoreyAdSDK.sharedInstance.config;
-    NSString *biddingId = [Constants getBiddingId];
-    NSString *requestId = [RandomHelper randomStr:32];
+    NSString *biddingId = [RandomHelper randomUUID];
+    NSString *requestId = [RandomHelper randomUUID];
     NSString *adImp = [BoreyAd getAdImp:adType];
     NSInteger isTest = config.debug ? 1 : 0;
     // 创建一个UIWebView来获取User-Agent
@@ -141,6 +142,9 @@ NSString *const BASE_URL = @"http://bid-adx.lanjingads.com/main?media=";
     }
     
     NSString *idfaMd5 = [Md5Helper md5: idfa];
+    NSString *sysU = [DeviceHelper getSysU];
+    NSString *sysTime = [DeviceHelper bootTimeInSec];
+    NSInteger netType = [NetworkHelper getNetworkType];
     
     //paid
     NSDictionary * device = @{
@@ -161,7 +165,10 @@ NSString *const BASE_URL = @"http://bid-adx.lanjingads.com/main?media=";
         @"lang": lang,
         @"idfa": idfa,
         @"idfa_md5": idfaMd5,
-        @"paid": paid
+        @"paid": paid,
+        @"update_mark": sysU,
+        @"boot_mark": sysTime,
+        @"connectiontype": @(netType)
     };
     
     //app信息

@@ -22,4 +22,11 @@ NSString const* charSet = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
     return [randomString copy];
 }
 
++ (NSString *)randomUUID {
+    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuidString = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
+    CFRelease(uuid);
+    return uuidString;
+}
+
 @end

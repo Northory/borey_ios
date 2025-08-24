@@ -54,6 +54,8 @@
 		1B47B9562D0DC81A0062B4EB /* CustomWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B47B9552D0DC81A0062B4EB /* CustomWebView.m */; };
 		1B47B9582D0DC8280062B4EB /* CustomWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B47B9572D0DC8280062B4EB /* CustomWebView.h */; };
 		1B47B95A2D0DCC490062B4EB /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B47B9592D0DCC490062B4EB /* WebKit.framework */; };
+		1B6AA2572E5B1DBA008648E2 /* NetworkHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6AA2552E5B1DB9008648E2 /* NetworkHelper.h */; };
+		1B6AA2582E5B1DBA008648E2 /* NetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6AA2562E5B1DBA008648E2 /* NetworkHelper.m */; };
 		1B75C45A2D7D85520062C27D /* BoreyCustomAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B75C4592D7D85520062C27D /* BoreyCustomAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B75C45C2D7D85680062C27D /* BoreyCustomAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B75C45B2D7D85680062C27D /* BoreyCustomAd.m */; };
 		1B75C45E2D7D85810062C27D /* BoreyCustomAdFiller.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B75C45D2D7D85810062C27D /* BoreyCustomAdFiller.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -120,15 +122,17 @@
 		1B47B9552D0DC81A0062B4EB /* CustomWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomWebView.m; sourceTree = "<group>"; };
 		1B47B9572D0DC8280062B4EB /* CustomWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomWebView.h; sourceTree = "<group>"; };
 		1B47B9592D0DCC490062B4EB /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		1B6AA2552E5B1DB9008648E2 /* NetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkHelper.h; sourceTree = "<group>"; };
+		1B6AA2562E5B1DBA008648E2 /* NetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkHelper.m; sourceTree = "<group>"; };
 		1B75C4592D7D85520062C27D /* BoreyCustomAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoreyCustomAd.h; sourceTree = "<group>"; };
 		1B75C45B2D7D85680062C27D /* BoreyCustomAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoreyCustomAd.m; sourceTree = "<group>"; };
 		1B75C45D2D7D85810062C27D /* BoreyCustomAdFiller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoreyCustomAdFiller.h; sourceTree = "<group>"; };
 		1B75C45F2D7D858C0062C27D /* BoreyCustomAdFiller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoreyCustomAdFiller.m; sourceTree = "<group>"; };
 		1B75C4612D7D90A60062C27D /* CustomAdInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomAdInfo.h; sourceTree = "<group>"; };
 		1B75C4632D7D90B40062C27D /* CustomAdInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomAdInfo.m; sourceTree = "<group>"; };
-		1B9611572D0C70D800C8CE3F /* DeviceHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceHelper.h; sourceTree = "<group>"; };
+		1B9611572D0C70D800C8CE3F /* DeviceHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DeviceHelper.h; path = ../Common/DeviceHelper.h; sourceTree = "<group>"; };
 		1B9611592D0C710900C8CE3F /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
-		1B96115B2D0C713700C8CE3F /* DeviceHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceHelper.m; sourceTree = "<group>"; };
+		1B96115B2D0C713700C8CE3F /* DeviceHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DeviceHelper.m; path = ../Common/DeviceHelper.m; sourceTree = "<group>"; };
 		1B96115D2D0C738C00C8CE3F /* Md5Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Md5Helper.h; sourceTree = "<group>"; };
 		1B96115F2D0C73AC00C8CE3F /* Md5Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Md5Helper.m; sourceTree = "<group>"; };
 		1B9611612D0D478700C8CE3F /* Logs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Logs.m; sourceTree = "<group>"; };
@@ -296,14 +300,8 @@
 		1BCEF5212CFCB144008B4A53 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				1B1592BA2D04671F00F0D065 /* ErrorHelper.h */,
-				1B1592BB2D04671F00F0D065 /* ErrorHelper.m */,
 				1B1592C72D05A0B900F0D065 /* Constants.h */,
 				1B1592C92D05A14000F0D065 /* Constants.m */,
-				1B9611572D0C70D800C8CE3F /* DeviceHelper.h */,
-				1B96115B2D0C713700C8CE3F /* DeviceHelper.m */,
-				1B96115D2D0C738C00C8CE3F /* Md5Helper.h */,
-				1B96115F2D0C73AC00C8CE3F /* Md5Helper.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -311,6 +309,14 @@
 		1BCEF5222CFCB14F008B4A53 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				1B9611572D0C70D800C8CE3F /* DeviceHelper.h */,
+				1B96115B2D0C713700C8CE3F /* DeviceHelper.m */,
+				1B96115D2D0C738C00C8CE3F /* Md5Helper.h */,
+				1B96115F2D0C73AC00C8CE3F /* Md5Helper.m */,
+				1B1592BA2D04671F00F0D065 /* ErrorHelper.h */,
+				1B1592BB2D04671F00F0D065 /* ErrorHelper.m */,
+				1B6AA2552E5B1DB9008648E2 /* NetworkHelper.h */,
+				1B6AA2562E5B1DBA008648E2 /* NetworkHelper.m */,
 				1B1592BF2D05839700F0D065 /* RandomHelper.h */,
 				1B1592C02D05839700F0D065 /* RandomHelper.m */,
 				1B1592C52D059C5500F0D065 /* PreferenceHelper.h */,
@@ -337,6 +343,7 @@
 				1B1592A92D040B0C00F0D065 /* SeatBid.h in Headers */,
 				1B1592AD2D040C5E00F0D065 /* Bid.h in Headers */,
 				1B1592B12D040E7000F0D065 /* Image.h in Headers */,
+				1B6AA2572E5B1DBA008648E2 /* NetworkHelper.h in Headers */,
 				1B1592B82D0454E000F0D065 /* BoreyConfig.h in Headers */,
 				1B9611582D0C70D800C8CE3F /* DeviceHelper.h in Headers */,
 				1B3A94102D6CAE2400254A5A /* BoreyBannerAd.h in Headers */,
@@ -452,6 +459,7 @@
 			files = (
 				1B1592AA2D040B0C00F0D065 /* SeatBid.m in Sources */,
 				1B1592B22D040E7000F0D065 /* Image.m in Sources */,
+				1B6AA2582E5B1DBA008648E2 /* NetworkHelper.m in Sources */,
 				1B75C4642D7D90B40062C27D /* CustomAdInfo.m in Sources */,
 				1B3A94042D6CADD600254A5A /* BoreyExpressAdFiller.m in Sources */,
 				1B1592C22D05839700F0D065 /* RandomHelper.m in Sources */,

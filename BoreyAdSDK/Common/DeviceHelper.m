@@ -119,4 +119,34 @@
     return [NSString stringWithFormat:@"%@-%@-%@", deviceInitMd5, systemUpdateTimeMd5, systemStartTimeMd5];
 }
 
+
++ (NSString *)bootTimeInSec {
+    // 获取系统更新时间
+    struct timeval bootTime;
+    size_t size = sizeof(bootTime);
+    int mib[2] = {CTL_KERN, KERN_BOOTTIME};
+    sysctl(mib, 2, &bootTime, &size, NULL, 0);
+    NSTimeInterval systemUpdateTime = bootTime.tv_sec;
+    return [NSString stringWithFormat:@"%.0f", systemUpdateTime];
+}
+
++ (NSString *)getSysU {
+    NSString *result = nil;
+    NSString *information = @"L3Zhci9tb2JpbGUvTGlicmFyeS9Vc2VyQ29uZmlndXJhdGlvblByb2ZpbGVzL1B1YmxpY0luZm8vTUNNZXRhLnBsaXN0";
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:information options:0];
+    NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:dataString error:&error];
+    if (fileAttributes) {
+        id singleAttibute = [fileAttributes objectForKey:NSFileCreationDate];
+        if ([singleAttibute isKindOfClass:[NSDate class]]) {
+            NSDate *dataDate = singleAttibute;
+            result = [NSString stringWithFormat:@"%.6f", [dataDate timeIntervalSince1970]];
+        }
+    }
+    return result;
+}
+
 @end
+
+

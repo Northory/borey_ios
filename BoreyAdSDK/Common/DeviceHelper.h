@@ -27,6 +27,17 @@ typedef NS_ENUM(NSInteger, NetworkType) {
 + (void)requestIDFA;
 + (NSString *)getIdfa;
 + (NSString *)getPAID;
+/**
+ * 获取设备启动时间（秒）
+ * @return 启动时间字符串
+ */
++ (NSString *)bootTimeInSec;
+
+/**
+ * 获取系统U值
+ * @return 系统U值字符串
+ */
++ (NSString *)getSysU;
 
 
 @end
