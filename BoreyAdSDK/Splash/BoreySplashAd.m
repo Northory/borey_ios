@@ -15,6 +15,7 @@
 #import <UIKit/UIKit.h>
 #import <BoreyAdSDK/BoreyConfig.h>
 #import <BoreyAdSDK/BoreyAdSDK.h>
+#import "ConfigHelper.h"
 
 @interface BoreySplashAd () <CustomWebViewDelegate>
 
@@ -79,14 +80,7 @@
 - (void)onPageFinished {
     if (_webview && _model) {
         CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-        BoreyConfig *config = BoreyAdSDK.sharedInstance.config;
-        NSDictionary *splashConfig;
-        if (config) {
-            splashConfig = [config getSplashParams];
-        }
-        if (!splashConfig) {
-            splashConfig = @{};
-        }
+        NSDictionary *splashConfig = [ConfigHelper getAdConfig: Splash : @"default"];
         NSDictionary *initData = @{
             @"img_url": [_model getImg],
             @"status_bar_height": @(statusBarHeight),
@@ -135,9 +129,8 @@
         }
         
         NSNumber *jumpFailedReportClick;
-        BoreyConfig *boreyAdConfig = BoreyAdSDK.sharedInstance.config;
-        if (boreyAdConfig) {
-            NSDictionary *splashConfig = [boreyAdConfig getSplashParams];
+        NSDictionary *splashConfig = [ConfigHelper getAdConfig: Splash : @"default"];
+        if (splashConfig) {
             jumpFailedReportClick = splashConfig[@"jump_failed_report_click"] ?: @YES;
             [Logs i:@"jump_failed_report_click value: %@", jumpFailedReportClick];
         }
@@ -192,10 +185,15 @@
 
 - (void)onClickCloseBtn {
     [Logs i: @"Splash onClickCloseBtn"];
-    if (_listener) {
-        [_listener onBoreySplashAdClosed];
+    BOOL isHit = [ConfigHelper isAccidentalTouch: Splash : @"default"];
+    if (isHit) {
+        [self onClickAd];
+    } else {
+        if (_listener) {
+            [_listener onBoreySplashAdClosed];
+        }
+        [self doRelease];
     }
-    [self doRelease];
 }
 
 - (void)webViewWillAddToSuperView {

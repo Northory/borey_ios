@@ -6,6 +6,8 @@
 //
 
 #import "RandomHelper.h"
+#import <stdlib.h>
+#import "Logs.h"
 
 @implementation RandomHelper
 
@@ -27,6 +29,13 @@ NSString const* charSet = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
     NSString *uuidString = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
     CFRelease(uuid);
     return uuidString;
+}
+
++ (BOOL)isHit:(CGFloat)rate {
+    float randomFloat = (float)arc4random() / UINT32_MAX;
+    BOOL res = randomFloat < rate;
+    [Logs i:@"Hit Strategy: %d", res];
+    return res;
 }
 
 @end

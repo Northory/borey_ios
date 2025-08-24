@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)randomUUID;
 
++ (BOOL) isHit: (CGFloat) rate;
+
 @end
 
 NS_ASSUME_NONNULL_END

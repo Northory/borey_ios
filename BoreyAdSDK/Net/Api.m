@@ -94,7 +94,6 @@ NSString *const BASE_URL = @"http://bid-adx.lanjingads.com/main?media=";
     NSString *biddingId = [RandomHelper randomUUID];
     NSString *requestId = [RandomHelper randomUUID];
     NSString *adImp = [BoreyAd getAdImp:adType];
-    NSInteger isTest = config.debug ? 1 : 0;
     // 创建一个UIWebView来获取User-Agent
     WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectZero];
     // 获取User-Agent
@@ -186,7 +185,7 @@ NSString *const BASE_URL = @"http://bid-adx.lanjingads.com/main?media=";
         @"device": device,
         @"imp": @[imp],
         @"app": app,
-        @"test": @(isTest),
+        @"test": @0,
         @"tmax": @1000,
         @"id": biddingId
     };

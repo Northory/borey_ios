@@ -26,13 +26,13 @@
 + (NSString *)getAdTypeName:(AdType)adtype {
     switch (adtype) {
         case Splash:
-            return @"Splash";
+            return @"splash";
         case Express:
-            return @"Express";
+            return @"express";
         case Banner:
-            return @"Banner";
+            return @"banner";
         case Custom:
-            return @"Custom";
+            return @"native";
     }
 }
 

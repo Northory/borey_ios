@@ -35,4 +35,8 @@
     return @{};
 }
 
+- (NSDictionary *)getParams {
+    return _params;
+}
+
 @end
